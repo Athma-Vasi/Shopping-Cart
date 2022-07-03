@@ -31,4 +31,6 @@ interface Src {
 	tiny: string
 }
 
-export { PhotosResponse, Photo, Src }
+type ItemData = Map<number, Map<string, string>>
+
+export { PhotosResponse, Photo, Src, ItemData }
