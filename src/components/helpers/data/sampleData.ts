@@ -1,4 +1,4 @@
-import { PhotosResponse } from './types'
+import { PhotosResponse } from '../types'
 
 const data: PhotosResponse = {
 	page: 1,

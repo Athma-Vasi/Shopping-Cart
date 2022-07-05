@@ -18,17 +18,7 @@ const WrapperS = styled.div<WrapperProps>`
 	display: grid;
 	place-content: center;
 
-	@media only screen and (max-width: 600px) {
-		width: calc(100% - 2rem);
-	}
-
-	@media only screen and (max-width: 960px) {
-		width: 93ch - 2rem;
-	}
-
-	@media only screen and (min-width: 1200px) {
-		width: 190ch - 2rem;
-	}
+	width: 95vw;
 
 	transition: 146ms all ease-in-out;
 

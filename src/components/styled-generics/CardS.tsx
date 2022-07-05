@@ -6,15 +6,17 @@ type CardProps = {
 }
 
 const CardS = styled.div<CardProps>`
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	box-sizing: border-box;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 
-	// padding-left: 1rem;
-	// padding-right: 1rem;
-
-	height: 30rem;
+	height: 35rem;
 
 	transition: 146ms all ease-in-out;
 
@@ -23,8 +25,8 @@ const CardS = styled.div<CardProps>`
 		backgroundColour ? backgroundColour : 'white'};
 
 	// width: min(40ch, 100% - 2rem);
-
-	width: clamp(15ch, 35ch, 60ch);
+	// width: clamp(150px, 30vw, 300px);
+	width: 150px;
 
 	&:hover {
 		cursor: pointer;
