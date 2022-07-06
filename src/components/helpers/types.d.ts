@@ -33,4 +33,37 @@ interface Src {
 
 type ItemData = Map<number, Map<string, string>>
 
-export { PhotosResponse, Photo, Src, ItemData }
+// type State = {
+// 	itemCategory: string
+// 	itemId: string
+// 	itemName: string
+// 	itemPrice: string
+// 	itemDescription: string
+// 	itemAmount: string
+// }[]
+
+type State = {
+	women: Map<string, Map<string, string>>
+	men: Map<string, Map<string, string>>
+	accessories: Map<string, Map<string, string>>
+	totalCost: string
+}
+
+type Dispatch = {
+	type: string
+	payload: {
+		state: State
+	}
+}
+
+type Action = {
+	addWomenItemsToCart: 'addWomenItemsToCart'
+	removeWomenItemsFromCart: 'removeWomenItemsFromCart'
+	addMenItemsToCart: 'addMenItemsToCart'
+	removeMenItemsFromCart: 'removeMenItemsFromCart'
+	addAccessoriesItemsToCart: 'addAccessoriesItemsToCart'
+	removeAccessoriesItemsFromCart: 'removeAccessoriesItemsFromCart'
+	updateTotalCost: 'updateTotalCost'
+}
+
+export { PhotosResponse, Photo, Src, ItemData, State, Dispatch, Action }

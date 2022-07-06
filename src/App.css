@@ -58,7 +58,7 @@ li * {
 	transition: all 142ms ease-in-out;
 }
 .product-image:hover {
-	transform: scale(1.618);
+	transform: scale(1.382);
 }
 
 .product-details {
@@ -82,6 +82,15 @@ li * {
 	align-self: center;
 }
 
+.cart-summary {
+	outline: 1px solid cadetblue;
+}
+
+.cart-item:nth-child(8n) {
+	outline: 1px solid chocolate;
+	border-bottom: 1px solid;
+	margin-bottom: 3rem;
+}
 /* @media only screen and(min-width: 768px) and (max-width: 1242px) {
 	.product-image img {
 		width: 640px;

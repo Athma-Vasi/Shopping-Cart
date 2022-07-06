@@ -1,12 +1,78 @@
 import { NavLink, Link, Route, Routes, BrowserRouter as Router } from 'react-router-dom'
+import { State, Dispatch, Action } from '../helpers/types'
 import { WrapperS } from '../styled-generics/WrapperS'
 import { About } from './About'
 import { Cashier } from './Cashier'
 import { Home } from './Home'
 import { ProductDetails } from './ProductDetails'
 import { Products } from './Products'
+import React from 'react'
+
+const initialState: State = {
+	women: new Map(),
+	men: new Map(),
+	accessories: new Map(),
+	totalCost: '0.00',
+}
+
+const action: Action = {
+	addWomenItemsToCart: 'addWomenItemsToCart',
+	removeWomenItemsFromCart: 'removeWomenItemsFromCart',
+
+	addMenItemsToCart: 'addMenItemsToCart',
+	removeMenItemsFromCart: 'removeMenItemsFromCart',
+
+	addAccessoriesItemsToCart: 'addAccessoriesItemsToCart',
+	removeAccessoriesItemsFromCart: 'removeAccessoriesItemsFromCart',
+
+	updateTotalCost: 'updateTotalCost',
+}
+
+const reducer = function (state: State, action: Dispatch): State {
+	const clone: State = structuredClone(state)
+
+	switch (action.type) {
+		case 'addWomenItemsToCart': {
+			clone.women = action.payload.state.women
+			return clone
+		}
+		case 'removeWomenItemsFromCart': {
+			clone.women = action.payload.state.women
+			return clone
+		}
+
+		case 'addMenItemsToCart': {
+			clone.men = action.payload.state.men
+			return clone
+		}
+		case 'removeMenItemsFromCart': {
+			clone.men = action.payload.state.men
+			return clone
+		}
+
+		case 'addAccessoriesItemsToCart': {
+			clone.accessories = action.payload.state.accessories
+			return clone
+		}
+		case 'removeAccessoriesItemsFromCart': {
+			clone.accessories = action.payload.state.accessories
+			return clone
+		}
+
+		case 'updateTotalCost': {
+			clone.totalCost = action.payload.state.totalCost
+			return clone
+		}
+
+		default: {
+			return clone
+		}
+	}
+}
 
 function Views() {
+	const [state, dispatch] = React.useReducer(reducer, initialState)
+
 	return (
 		<Router>
 			<WrapperS>
@@ -83,8 +149,14 @@ function Views() {
 					<Route path="/" element={<Home />} />
 					<Route path="about" element={<About />} />
 					<Route path="products/*" element={<Products />} />
-					<Route path="/products/:id" element={<ProductDetails />} />
-					<Route path="cashier" element={<Cashier />} />
+					<Route
+						path="/products/:id"
+						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
+					/>
+					<Route
+						path="cashier"
+						element={<Cashier state={state} dispatch={dispatch} action={action} />}
+					/>
 				</Routes>
 
 				<footer>
