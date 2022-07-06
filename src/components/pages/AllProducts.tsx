@@ -12,7 +12,7 @@ function AllProducts() {
 			<ContainerS>
 				{Object.entries(Object.fromEntries(womensData)).map(([key, value]) => {
 					return (
-						<Link to={`/products/${key}`}>
+						<Link to={`/products/women-${key}`}>
 							<CardS>
 								{Object.entries(Object.fromEntries(value)).map(([key, value]) => {
 									return key === 'src' ? (
@@ -29,7 +29,7 @@ function AllProducts() {
 
 				{Object.entries(Object.fromEntries(mensData)).map(([key, value]) => {
 					return (
-						<Link to={`/products/${key}`}>
+						<Link to={`/products/men-${key}`}>
 							<CardS>
 								{Object.entries(Object.fromEntries(value)).map(([key, value]) => {
 									return key === 'src' ? (
@@ -46,7 +46,7 @@ function AllProducts() {
 
 				{Object.entries(Object.fromEntries(accessoriesData)).map(([key, value]) => {
 					return (
-						<Link to={`/products/${key}`}>
+						<Link to={`/products/accessories-${key}`}>
 							<CardS>
 								{Object.entries(Object.fromEntries(value)).map(([key, value]) => {
 									return key === 'src' ? (
