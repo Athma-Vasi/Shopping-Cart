@@ -194,7 +194,7 @@ function Views() {
 				</nav>
 
 				<Routes>
-					<Route path="/" element={<Home />} />
+					<Route path="/" element={<Home state={state} />} />
 					<Route path="about" element={<About state={state} />} />
 					<Route path="products/*" element={<Products state={state} />} />
 					<Route
