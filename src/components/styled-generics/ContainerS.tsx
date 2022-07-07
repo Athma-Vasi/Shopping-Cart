@@ -25,13 +25,11 @@ const ContainerS = styled.div<ContainerProps>`
 
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
-	gap: 2rem;
+	gap: 3rem;
 
 	transition: 146ms all ease-in-out;
-
-	outline: 1px solid cyan;
 `
 
 export { ContainerS }

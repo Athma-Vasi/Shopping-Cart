@@ -21,8 +21,6 @@ const WrapperS = styled.div<WrapperProps>`
 	width: 95vw;
 
 	transition: 146ms all ease-in-out;
-
-	outline: 1px solid wheat;
 `
 
 export { WrapperS }

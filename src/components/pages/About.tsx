@@ -14,7 +14,7 @@ function About({ state }: { state: State }) {
 						: state.themeState.backgroundColour.light
 				}
 			>
-				<h2>FASHION EMPORIUM</h2>
+				<h2>THE FASHION EMPORIUM</h2>
 				<ContainerS
 					colour={
 						state.isDarkMode

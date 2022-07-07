@@ -53,9 +53,6 @@ function ProductDetails({
 		const itemOptionAmount = formData.get('addCart')?.toString() ?? ''
 
 		if (itemOptionAmount !== '') {
-			// const cloneAmount = structuredClone(itemAmount)
-			// setItemAmount(cloneAmount.set('amount', Number(itemOptionAmount)))
-
 			const cloneState: State = structuredClone(state)
 
 			if (itemCategory === 'women') {
@@ -76,7 +73,8 @@ function ProductDetails({
 					])
 				)
 				const prevTotalCost = Number(cloneState.totalCost)
-				const newTotalCost = prevTotalCost + Number(itemOptionAmount) * Number(itemPrice)
+				const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				const newTotalCost = prevTotalCost + itemCost
 				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 
 				dispatch({
@@ -85,6 +83,8 @@ function ProductDetails({
 						state: cloneState,
 					},
 				})
+
+				console.log(cloneState.totalCost)
 
 				dispatch({
 					type: action.updateTotalCost,
@@ -110,7 +110,8 @@ function ProductDetails({
 					])
 				)
 				const prevTotalCost = Number(cloneState.totalCost)
-				const newTotalCost = prevTotalCost + Number(itemOptionAmount) * Number(itemPrice)
+				const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				const newTotalCost = prevTotalCost + itemCost
 				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 
 				dispatch({
@@ -144,7 +145,8 @@ function ProductDetails({
 					])
 				)
 				const prevTotalCost = Number(cloneState.totalCost)
-				const newTotalCost = prevTotalCost + Number(itemOptionAmount) * Number(itemPrice)
+				const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				const newTotalCost = prevTotalCost + itemCost
 				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 
 				dispatch({
@@ -240,7 +242,7 @@ function ProductDetails({
 					</form>
 
 					{isItemInCart && (
-						<>
+						<div className="itemsInCart">
 							<h3>Item has been added to cart!</h3>
 							<Link to="/cashier">
 								<ButtonS
@@ -259,7 +261,7 @@ function ProductDetails({
 									Complete order and checkout
 								</ButtonS>
 							</Link>
-						</>
+						</div>
 					)}
 				</div>
 			</ContainerS>
@@ -267,24 +269,3 @@ function ProductDetails({
 	)
 }
 export { ProductDetails }
-
-{
-	/* <div className="product-details">
-				{category === 'women'
-					? Object.entries(
-							Object.fromEntries(womensData.get(Number(idNum)) as Map<string, string>)
-					  ).map(([key, value]) => {
-							return (
-								<ContainerS key={key}>
-									{key === 'src' ? (
-										<img src={value} alt="" width={320} height={480} />
-									) : key === 'category' ? null : (
-										<h5>{value}</h5>
-									)}
-								</ContainerS>
-							)
-					  })
-					: null}
-				<ButtonS>Add to cart</ButtonS>
-			</div> */
-}

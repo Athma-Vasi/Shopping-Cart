@@ -27,7 +27,7 @@ function Home({ state }: { state: State }) {
 						height={720}
 					/>
 					<figcaption>Photo by SHVETS production at pexels.com</figcaption>
-					<h4>Comfy. Chic. Loungewear</h4>
+					<h4>Comfy. Chic. Loungewear.</h4>
 					<Link to="products/products/womens">Shop Collection</Link>
 				</div>
 

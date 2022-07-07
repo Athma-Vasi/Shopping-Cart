@@ -1,6 +1,8 @@
 import { Action, Dispatch, State } from '../helpers/types'
 import { ButtonS } from '../styled-generics/ButtonS'
 import { ContainerS } from '../styled-generics/ContainerS'
+import { Link, Routes, Route } from 'react-router-dom'
+import { Checkout } from './Checkout'
 
 function Cashier({
 	state,
@@ -18,7 +20,7 @@ function Cashier({
 
 		if (name === 'accessories') {
 			const itemTotal = Number(cloneState.accessories.get(value).get('itemTotal'))
-			const cartTotal = Number(cloneState.totalCost)
+			const cartTotal = Number(cloneState.totalCost) / 1.05
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
 
@@ -34,7 +36,7 @@ function Cashier({
 			})
 		} else if (name === 'women') {
 			const itemTotal = Number(cloneState.women.get(value).get('itemTotal'))
-			const cartTotal = Number(cloneState.totalCost)
+			const cartTotal = Number(cloneState.totalCost) / 1.05
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
 
@@ -50,7 +52,7 @@ function Cashier({
 			})
 		} else if (name === 'men') {
 			const itemTotal = Number(cloneState.men.get(value).get('itemTotal'))
-			const cartTotal = Number(cloneState.totalCost)
+			const cartTotal = Number(cloneState.totalCost) / 1.05
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
 
@@ -230,7 +232,35 @@ function Cashier({
 				<div className="order-summary">
 					<h3>Order Summary</h3>
 					<p>(Includes G.S.T.)</p>
-					<p>Total price: ${`${state.totalCost}`}</p>
+					<p>
+						Total price: $
+						{state.men.size === 0 &&
+						state.women.size === 0 &&
+						state.accessories.size === 0
+							? '0.00'
+							: state.totalCost}
+					</p>
+					{state.men.size === 0 &&
+					state.women.size === 0 &&
+					state.accessories.size === 0 ? null : (
+						<Link to="/checkout">
+							<ButtonS
+								type="button"
+								colour={
+									state.isDarkMode
+										? state.themeState.colour.dark
+										: state.themeState.colour.light
+								}
+								backgroundColour={
+									state.isDarkMode
+										? state.themeState.backgroundColour.dark
+										: state.themeState.backgroundColour.light
+								}
+							>
+								Complete order
+							</ButtonS>
+						</Link>
+					)}
 				</div>
 			</ContainerS>
 		</>

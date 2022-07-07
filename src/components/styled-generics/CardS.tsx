@@ -13,10 +13,13 @@ const CardS = styled.div<CardProps>`
 
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: flex-start;
 
-	height: 35rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 
 	transition: 146ms all ease-in-out;
 
@@ -26,7 +29,8 @@ const CardS = styled.div<CardProps>`
 
 	// width: min(40ch, 100% - 2rem);
 	// width: clamp(150px, 30vw, 300px);
-	width: 150px;
+	width: 170px;
+	height: 35rem;
 
 	&:hover {
 		cursor: pointer;
@@ -35,7 +39,7 @@ const CardS = styled.div<CardProps>`
 		transform: scale(1.0382);
 	}
 
-	border: 1px solid ${({ colour }) => (colour ? colour : 'hsl(180, 100%, 25%)')};
+	// border: 1px solid ${({ colour }) => (colour ? colour : 'hsl(180, 100%, 25%)')};
 	border-radius: 4px;
 `
 

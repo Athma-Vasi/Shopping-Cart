@@ -29,7 +29,7 @@ function Products({ state }: { state: State }) {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkorange' : 'inherit',
+										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
 								to="products/all"
@@ -43,7 +43,7 @@ function Products({ state }: { state: State }) {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkorange' : 'inherit',
+										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
 								to="products/accessories"
@@ -57,12 +57,12 @@ function Products({ state }: { state: State }) {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkorange' : 'inherit',
+										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
 								to="products/mens"
 							>
-								Mens fashion
+								Men's fashion
 							</NavLink>
 						</li>
 						<li>
@@ -71,12 +71,12 @@ function Products({ state }: { state: State }) {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkorange' : 'inherit',
+										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
 								to="products/womens"
 							>
-								Womens fashion
+								Women's fashion
 							</NavLink>
 						</li>
 					</ul>

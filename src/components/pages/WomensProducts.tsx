@@ -7,7 +7,7 @@ import { ContainerS } from '../styled-generics/ContainerS'
 function WomensProducts({ state }: { state: State }) {
 	return (
 		<>
-			<h3>womens products</h3>
+			<h3 className="products-title">Women's fashion</h3>
 			<ContainerS
 				colour={
 					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
@@ -40,9 +40,13 @@ function WomensProducts({ state }: { state: State }) {
 									) : key === 'category' ? null : key === 'author' ? null : key ===
 									  'site' ? null : key === 'itemDescription' ? null : key ===
 									  'itemPrice' ? (
-										<h4 key={key}>${value}</h4>
+										<h4 className="product-text" key={key}>
+											${value}
+										</h4>
 									) : (
-										<h4 key={key}>{value}</h4>
+										<h4 className="product-text" key={key}>
+											{value}
+										</h4>
 									)
 								})}
 							</CardS>

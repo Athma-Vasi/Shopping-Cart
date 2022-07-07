@@ -9,7 +9,7 @@ import { State } from '../helpers/types'
 function AllProducts({ state }: { state: State }) {
 	return (
 		<>
-			<h3>all products</h3>
+			<h3 className="products-title">All products</h3>
 			<ContainerS
 				colour={
 					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
@@ -39,9 +39,16 @@ function AllProducts({ state }: { state: State }) {
 									return key === 'src' ? (
 										<img key={key} src={value} alt="" width={150} height={225}></img>
 									) : key === 'category' ? null : key === 'author' ? null : key ===
-									  'site' ? null : key === 'itemDescription' ? null : (
-										<h4 key={key}>{value}</h4>
-									)
+									  'site' ? null : key === 'itemDescription' ? null : key ===
+									  'itemName' ? (
+										<h4 className="product-text" key={key}>
+											{value}
+										</h4>
+									) : key === 'itemPrice' ? (
+										<h4 className="product-text" key={key}>
+											${value}
+										</h4>
+									) : null
 								})}
 							</CardS>
 						</Link>
@@ -67,9 +74,16 @@ function AllProducts({ state }: { state: State }) {
 									return key === 'src' ? (
 										<img key={key} src={value} alt="" width={150} height={225}></img>
 									) : key === 'category' ? null : key === 'author' ? null : key ===
-									  'site' ? null : key === 'itemDescription' ? null : (
-										<h4 key={key}>{value}</h4>
-									)
+									  'site' ? null : key === 'itemDescription' ? null : key ===
+									  'itemName' ? (
+										<h4 className="product-text" key={key}>
+											{value}
+										</h4>
+									) : key === 'itemPrice' ? (
+										<h4 className="product-text" key={key}>
+											${value}
+										</h4>
+									) : null
 								})}
 							</CardS>
 						</Link>
@@ -95,9 +109,16 @@ function AllProducts({ state }: { state: State }) {
 									return key === 'src' ? (
 										<img key={key} src={value} alt="" width={150} height={225}></img>
 									) : key === 'category' ? null : key === 'author' ? null : key ===
-									  'site' ? null : key === 'itemDescription' ? null : (
-										<h4 key={key}>{value}</h4>
-									)
+									  'site' ? null : key === 'itemDescription' ? null : key ===
+									  'itemName' ? (
+										<h4 className="product-text" key={key}>
+											{value}
+										</h4>
+									) : key === 'itemPrice' ? (
+										<h4 className="product-text" key={key}>
+											${value}
+										</h4>
+									) : null
 								})}
 							</CardS>
 						</Link>
