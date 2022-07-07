@@ -33,7 +33,7 @@ function Cashier({
 				payload: { state: cloneState },
 			})
 		} else if (name === 'women') {
-			const itemTotal = Number(cloneState.accessories.get(value).get('itemTotal'))
+			const itemTotal = Number(cloneState.women.get(value).get('itemTotal'))
 			const cartTotal = Number(cloneState.totalCost)
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
@@ -49,7 +49,7 @@ function Cashier({
 				payload: { state: cloneState },
 			})
 		} else if (name === 'men') {
-			const itemTotal = Number(cloneState.accessories.get(value).get('itemTotal'))
+			const itemTotal = Number(cloneState.men.get(value).get('itemTotal'))
 			const cartTotal = Number(cloneState.totalCost)
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
@@ -68,7 +68,16 @@ function Cashier({
 	}
 	return (
 		<>
-			<ContainerS>
+			<ContainerS
+				colour={
+					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
+				}
+				backgroundColour={
+					state.isDarkMode
+						? state.themeState.backgroundColour.dark
+						: state.themeState.backgroundColour.light
+				}
+			>
 				<div className="cart-summary">
 					{state.accessories.size > 0 &&
 						Object.entries(Object.fromEntries(state.accessories)).map(
@@ -96,14 +105,27 @@ function Cashier({
 												{key === 'itemPrice' ? <p>Price: ${value}</p> : null}
 												{key === 'itemTotal' ? <p>Item total: ${value}</p> : null}
 												{key === 'itemId' ? (
-													<ButtonS
-														type="button"
-														value={value}
-														name="accessories"
-														onClick={handleRemoveCartItemBttnClick}
-													>
-														Remove item
-													</ButtonS>
+													<div className="button-and-break">
+														<ButtonS
+															type="button"
+															value={value}
+															name="accessories"
+															onClick={handleRemoveCartItemBttnClick}
+															colour={
+																state.isDarkMode
+																	? state.themeState.colour.dark
+																	: state.themeState.colour.light
+															}
+															backgroundColour={
+																state.isDarkMode
+																	? state.themeState.backgroundColour.dark
+																	: state.themeState.backgroundColour.light
+															}
+														>
+															Remove item
+														</ButtonS>
+														<div className="line-break"></div>
+													</div>
 												) : null}
 											</div>
 										</>
@@ -135,14 +157,27 @@ function Cashier({
 										{key === 'itemPrice' ? <p>Price: ${value}</p> : null}
 										{key === 'itemTotal' ? <p>Item total: ${value}</p> : null}
 										{key === 'itemId' ? (
-											<ButtonS
-												type="button"
-												value={value}
-												name="women"
-												onClick={handleRemoveCartItemBttnClick}
-											>
-												Remove item
-											</ButtonS>
+											<div className="button-and-break">
+												<ButtonS
+													type="button"
+													value={value}
+													name="women"
+													onClick={handleRemoveCartItemBttnClick}
+													colour={
+														state.isDarkMode
+															? state.themeState.colour.dark
+															: state.themeState.colour.light
+													}
+													backgroundColour={
+														state.isDarkMode
+															? state.themeState.backgroundColour.dark
+															: state.themeState.backgroundColour.light
+													}
+												>
+													Remove item
+												</ButtonS>
+												<div className="line-break"></div>
+											</div>
 										) : null}
 									</div>
 								)
@@ -164,14 +199,27 @@ function Cashier({
 										{key === 'itemPrice' ? <p>Price: ${value}</p> : null}
 										{key === 'itemTotal' ? <p>Item total: ${value}</p> : null}
 										{key === 'itemId' ? (
-											<ButtonS
-												type="button"
-												value={value}
-												name="men"
-												onClick={handleRemoveCartItemBttnClick}
-											>
-												Remove item
-											</ButtonS>
+											<div className="button-and-break">
+												<ButtonS
+													type="button"
+													value={value}
+													name="men"
+													onClick={handleRemoveCartItemBttnClick}
+													colour={
+														state.isDarkMode
+															? state.themeState.colour.dark
+															: state.themeState.colour.light
+													}
+													backgroundColour={
+														state.isDarkMode
+															? state.themeState.backgroundColour.dark
+															: state.themeState.backgroundColour.light
+													}
+												>
+													Remove item
+												</ButtonS>
+												<div className="line-break"></div>
+											</div>
 										) : null}
 									</div>
 								)
@@ -181,6 +229,7 @@ function Cashier({
 
 				<div className="order-summary">
 					<h3>Order Summary</h3>
+					<p>(Includes G.S.T.)</p>
 					<p>Total price: ${`${state.totalCost}`}</p>
 				</div>
 			</ContainerS>

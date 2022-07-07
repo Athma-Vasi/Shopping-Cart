@@ -1,6 +1,7 @@
 import { NavLink, Link, Route, Routes, BrowserRouter as Router } from 'react-router-dom'
-import { State, Dispatch, Action } from '../helpers/types'
+import { State, Dispatch, Action, ThemeState } from '../helpers/types'
 import { WrapperS } from '../styled-generics/WrapperS'
+import { ButtonS } from '../styled-generics/ButtonS'
 import { About } from './About'
 import { Cashier } from './Cashier'
 import { Home } from './Home'
@@ -8,11 +9,24 @@ import { ProductDetails } from './ProductDetails'
 import { Products } from './Products'
 import React from 'react'
 
+const themeState: ThemeState = {
+	colour: {
+		light: 'hsl(0, 0%, 25%)',
+		dark: 'hsl(0, 0%, 75%)',
+	},
+	backgroundColour: {
+		light: 'hsl(0, 0%, 97%)',
+		dark: 'hsl(0, 0%, 11%)',
+	},
+}
+
 const initialState: State = {
 	women: new Map(),
 	men: new Map(),
 	accessories: new Map(),
 	totalCost: '0.00',
+	themeState: themeState,
+	isDarkMode: false,
 }
 
 const action: Action = {
@@ -26,6 +40,8 @@ const action: Action = {
 	removeAccessoriesItemsFromCart: 'removeAccessoriesItemsFromCart',
 
 	updateTotalCost: 'updateTotalCost',
+
+	toggleTheme: 'toggleTheme',
 }
 
 const reducer = function (state: State, action: Dispatch): State {
@@ -64,6 +80,11 @@ const reducer = function (state: State, action: Dispatch): State {
 			return clone
 		}
 
+		case 'toggleTheme': {
+			clone.isDarkMode = action.payload.state.isDarkMode
+			return clone
+		}
+
 		default: {
 			return clone
 		}
@@ -73,9 +94,32 @@ const reducer = function (state: State, action: Dispatch): State {
 function Views() {
 	const [state, dispatch] = React.useReducer(reducer, initialState)
 
+	function handleToggleThemeClick(ev: React.MouseEvent<HTMLLIElement, MouseEvent>) {
+		ev.preventDefault()
+		const cloneState: State = structuredClone(state)
+		ev.currentTarget.textContent = ev.currentTarget.textContent === '🌑' ? '☀️' : '🌑'
+		cloneState.isDarkMode = ev.currentTarget.textContent === '🌑' ? true : false
+
+		dispatch({
+			type: action.toggleTheme,
+			payload: {
+				state: cloneState,
+			},
+		})
+	}
+
 	return (
 		<Router>
-			<WrapperS>
+			<WrapperS
+				colour={
+					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
+				}
+				backgroundColour={
+					state.isDarkMode
+						? state.themeState.backgroundColour.dark
+						: state.themeState.backgroundColour.light
+				}
+			>
 				<nav className="navbar">
 					<NavLink to="/">
 						<h1>THE FASHION EMPORIUM</h1>
@@ -87,7 +131,7 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkgrey' : '#000',
+										color: isActive ? 'darkorange' : 'inherit',
 									}
 								}}
 								to="/"
@@ -101,7 +145,7 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkgrey' : '#000',
+										color: isActive ? 'darkorange' : 'inherit',
 									}
 								}}
 								to="about"
@@ -115,7 +159,7 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkgrey' : '#000',
+										color: isActive ? 'darkorange' : 'inherit',
 									}
 								}}
 								to="products"
@@ -129,7 +173,7 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkgrey' : '#000',
+										color: isActive ? 'darkorange' : 'inherit',
 									}
 								}}
 								to="cashier"
@@ -142,13 +186,17 @@ function Views() {
 								</svg>
 							</NavLink>
 						</li>
+
+						<li className="themeIcon" onClick={handleToggleThemeClick}>
+							☀️
+						</li>
 					</ul>
 				</nav>
 
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="about" element={<About />} />
-					<Route path="products/*" element={<Products />} />
+					<Route path="about" element={<About state={state} />} />
+					<Route path="products/*" element={<Products state={state} />} />
 					<Route
 						path="/products/:id"
 						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}

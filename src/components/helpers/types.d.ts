@@ -41,12 +41,24 @@ type ItemData = Map<number, Map<string, string>>
 // 	itemDescription: string
 // 	itemAmount: string
 // }[]
+type ThemeState = {
+	colour: {
+		light: string
+		dark: string
+	}
+	backgroundColour: {
+		light: string
+		dark: string
+	}
+}
 
 type State = {
 	women: Map<string, Map<string, string>>
 	men: Map<string, Map<string, string>>
 	accessories: Map<string, Map<string, string>>
 	totalCost: string
+	themeState: ThemeState
+	isDarkMode: boolean
 }
 
 type Dispatch = {
@@ -64,6 +76,7 @@ type Action = {
 	addAccessoriesItemsToCart: 'addAccessoriesItemsToCart'
 	removeAccessoriesItemsFromCart: 'removeAccessoriesItemsFromCart'
 	updateTotalCost: 'updateTotalCost'
+	toggleTheme: 'toggleTheme'
 }
 
-export { PhotosResponse, Photo, Src, ItemData, State, Dispatch, Action }
+export { PhotosResponse, Photo, Src, ItemData, State, Dispatch, Action, ThemeState }

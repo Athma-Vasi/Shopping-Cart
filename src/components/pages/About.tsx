@@ -1,4 +1,6 @@
-function About() {
+import { State } from '../helpers/types'
+
+function About({ state }: { state: State }) {
 	return (
 		<div className="about">
 			<h2>FASHION EMPORIUM</h2>

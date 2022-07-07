@@ -77,7 +77,7 @@ function ProductDetails({
 				)
 				const prevTotalCost = Number(cloneState.totalCost)
 				const newTotalCost = prevTotalCost + Number(itemOptionAmount) * Number(itemPrice)
-				cloneState.totalCost = newTotalCost.toFixed(2).toString()
+				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 
 				dispatch({
 					type: action.addWomenItemsToCart,
@@ -111,7 +111,7 @@ function ProductDetails({
 				)
 				const prevTotalCost = Number(cloneState.totalCost)
 				const newTotalCost = prevTotalCost + Number(itemOptionAmount) * Number(itemPrice)
-				cloneState.totalCost = newTotalCost.toFixed(2).toString()
+				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 
 				dispatch({
 					type: action.addMenItemsToCart,
@@ -145,7 +145,7 @@ function ProductDetails({
 				)
 				const prevTotalCost = Number(cloneState.totalCost)
 				const newTotalCost = prevTotalCost + Number(itemOptionAmount) * Number(itemPrice)
-				cloneState.totalCost = newTotalCost.toFixed(2).toString()
+				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 
 				dispatch({
 					type: action.addAccessoriesItemsToCart,
@@ -170,7 +170,16 @@ function ProductDetails({
 
 	return (
 		<>
-			<ContainerS>
+			<ContainerS
+				colour={
+					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
+				}
+				backgroundColour={
+					state.isDarkMode
+						? state.themeState.backgroundColour.dark
+						: state.themeState.backgroundColour.light
+				}
+			>
 				<div className="product-image">
 					<img src={src} alt={itemDescription} width={320} height={480}></img>
 					<figcaption>
@@ -180,7 +189,7 @@ function ProductDetails({
 				<div className="product-details">
 					<h3>{itemName}</h3>
 					<p>{itemDescription}</p>
-					<h3>{itemPrice}</h3>
+					<h3>${itemPrice}</h3>
 
 					<p>{`${randNum(13)} people bought this item last minute!`}</p>
 
@@ -191,7 +200,20 @@ function ProductDetails({
 						onSubmit={handleAddToCartBttnClick}
 					>
 						<label htmlFor="select-items"></label>
-						<SelectS name="addCart" id="select-items">
+						<SelectS
+							name="addCart"
+							id="select-items"
+							colour={
+								state.isDarkMode
+									? state.themeState.colour.dark
+									: state.themeState.colour.light
+							}
+							backgroundColour={
+								state.isDarkMode
+									? state.themeState.backgroundColour.dark
+									: state.themeState.backgroundColour.light
+							}
+						>
 							<option value="">--Please choose an amount--</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -199,7 +221,20 @@ function ProductDetails({
 							<option value="4">4</option>
 							<option value="5">5</option>
 						</SelectS>
-						<ButtonS type="submit" name="addCart">
+						<ButtonS
+							type="submit"
+							name="addCart"
+							colour={
+								state.isDarkMode
+									? state.themeState.colour.dark
+									: state.themeState.colour.light
+							}
+							backgroundColour={
+								state.isDarkMode
+									? state.themeState.backgroundColour.dark
+									: state.themeState.backgroundColour.light
+							}
+						>
 							Add to Cart
 						</ButtonS>
 					</form>
@@ -208,7 +243,21 @@ function ProductDetails({
 						<>
 							<h3>Item has been added to cart!</h3>
 							<Link to="/cashier">
-								<ButtonS type="button">Complete order and checkout</ButtonS>
+								<ButtonS
+									type="button"
+									colour={
+										state.isDarkMode
+											? state.themeState.colour.dark
+											: state.themeState.colour.light
+									}
+									backgroundColour={
+										state.isDarkMode
+											? state.themeState.backgroundColour.dark
+											: state.themeState.backgroundColour.light
+									}
+								>
+									Complete order and checkout
+								</ButtonS>
 							</Link>
 						</>
 					)}

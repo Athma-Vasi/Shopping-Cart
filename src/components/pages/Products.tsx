@@ -1,16 +1,25 @@
 import React from 'react'
-import { useParams } from 'react-router'
 import { NavLink, Route, Routes } from 'react-router-dom'
+import { State } from '../helpers/types'
 import { ContainerS } from '../styled-generics/ContainerS'
 import { AccessoriesProducts } from './AccessoriesProducts'
 import { AllProducts } from './AllProducts'
 import { MensProducts } from './MensProducts'
 import { WomensProducts } from './WomensProducts'
 
-function Products() {
+function Products({ state }: { state: State }) {
 	return (
 		<React.Fragment>
-			<ContainerS>
+			<ContainerS
+				colour={
+					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
+				}
+				backgroundColour={
+					state.isDarkMode
+						? state.themeState.backgroundColour.dark
+						: state.themeState.backgroundColour.light
+				}
+			>
 				<div className="sidebar">
 					<h3>Categories</h3>
 					<ul>
@@ -20,7 +29,7 @@ function Products() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkgrey' : '#000',
+										color: isActive ? 'darkorange' : 'inherit',
 									}
 								}}
 								to="products/all"
@@ -34,7 +43,7 @@ function Products() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkgrey' : '#000',
+										color: isActive ? 'darkorange' : 'inherit',
 									}
 								}}
 								to="products/accessories"
@@ -48,7 +57,7 @@ function Products() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkgrey' : '#000',
+										color: isActive ? 'darkorange' : 'inherit',
 									}
 								}}
 								to="products/mens"
@@ -62,7 +71,7 @@ function Products() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'darkgrey' : '#000',
+										color: isActive ? 'darkorange' : 'inherit',
 									}
 								}}
 								to="products/womens"
@@ -75,11 +84,17 @@ function Products() {
 
 				<div className="productListing">
 					<Routes>
-						<Route index element={<AllProducts />} />
-						<Route path="products/all" element={<AllProducts />} />
-						<Route path="products/accessories" element={<AccessoriesProducts />} />
-						<Route path="products/mens" element={<MensProducts />} />
-						<Route path="products/womens" element={<WomensProducts />}></Route>
+						<Route index element={<AllProducts state={state} />} />
+						<Route path="products/all" element={<AllProducts state={state} />} />
+						<Route
+							path="products/accessories"
+							element={<AccessoriesProducts state={state} />}
+						/>
+						<Route path="products/mens" element={<MensProducts state={state} />} />
+						<Route
+							path="products/womens"
+							element={<WomensProducts state={state} />}
+						></Route>
 					</Routes>
 				</div>
 			</ContainerS>
