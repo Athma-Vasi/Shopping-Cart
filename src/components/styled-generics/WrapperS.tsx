@@ -18,7 +18,7 @@ const WrapperS = styled.div<WrapperProps>`
 	display: grid;
 	place-content: center;
 
-	width: 95vw;
+	width: 100vw;
 
 	transition: 146ms all ease-in-out;
 `

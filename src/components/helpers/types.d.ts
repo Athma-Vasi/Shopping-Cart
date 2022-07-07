@@ -30,12 +30,17 @@ type Dispatch = {
 type Action = {
 	addWomenItemsToCart: 'addWomenItemsToCart'
 	removeWomenItemsFromCart: 'removeWomenItemsFromCart'
+
 	addMenItemsToCart: 'addMenItemsToCart'
 	removeMenItemsFromCart: 'removeMenItemsFromCart'
+
 	addAccessoriesItemsToCart: 'addAccessoriesItemsToCart'
 	removeAccessoriesItemsFromCart: 'removeAccessoriesItemsFromCart'
+
 	updateTotalCost: 'updateTotalCost'
 	toggleTheme: 'toggleTheme'
+
+	resetState: 'resetState'
 }
 
 export { ItemData, State, Dispatch, Action, ThemeState }

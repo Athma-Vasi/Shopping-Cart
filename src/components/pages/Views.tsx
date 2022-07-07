@@ -1,14 +1,16 @@
 import { NavLink, Link, Route, Routes, BrowserRouter as Router } from 'react-router-dom'
+import React from 'react'
+
 import { State, Dispatch, Action, ThemeState } from '../helpers/types'
+
 import { WrapperS } from '../styled-generics/WrapperS'
-import { ButtonS } from '../styled-generics/ButtonS'
+import { ContainerS } from '../styled-generics/ContainerS'
+
 import { About } from './About'
 import { Cashier } from './Cashier'
 import { Home } from './Home'
 import { ProductDetails } from './ProductDetails'
 import { Products } from './Products'
-import React from 'react'
-import { ContainerS } from '../styled-generics/ContainerS'
 import { Checkout } from './Checkout'
 
 const themeState: ThemeState = {
@@ -44,6 +46,8 @@ const action: Action = {
 	updateTotalCost: 'updateTotalCost',
 
 	toggleTheme: 'toggleTheme',
+
+	resetState: 'resetState',
 }
 
 const reducer = function (state: State, action: Dispatch): State {
@@ -87,6 +91,14 @@ const reducer = function (state: State, action: Dispatch): State {
 			return clone
 		}
 
+		case 'resetState': {
+			clone.accessories = action.payload.state.accessories
+			clone.women = action.payload.state.women
+			clone.men = action.payload.state.men
+			clone.totalCost = action.payload.state.totalCost
+			return clone
+		}
+
 		default: {
 			return clone
 		}
@@ -98,6 +110,7 @@ function Views() {
 
 	function handleToggleThemeClick(ev: React.MouseEvent<HTMLLIElement, MouseEvent>) {
 		ev.preventDefault()
+
 		const cloneState: State = structuredClone(state)
 		ev.currentTarget.textContent = ev.currentTarget.textContent === '🌑' ? '☀️' : '🌑'
 		cloneState.isDarkMode = ev.currentTarget.textContent === '🌑' ? true : false
@@ -197,6 +210,7 @@ function Views() {
 				<div className="navbar-line"></div>
 
 				<Routes>
+					<Route index element={<Home state={state} />} />
 					<Route path="/" element={<Home state={state} />} />
 					<Route path="about" element={<About state={state} />} />
 					<Route path="products/*" element={<Products state={state} />} />
@@ -208,7 +222,10 @@ function Views() {
 						path="cashier"
 						element={<Cashier state={state} dispatch={dispatch} action={action} />}
 					/>
-					<Route path="checkout" element={<Checkout state={state} />}></Route>
+					<Route
+						path="checkout"
+						element={<Checkout state={state} dispatch={dispatch} action={action} />}
+					></Route>
 				</Routes>
 
 				<footer>
@@ -233,7 +250,7 @@ function Views() {
 							<a href="https://github.com/Athma-Vasi">
 								<h3>Author</h3>
 							</a>
-							<a href="">
+							<a href="https://github.com/Athma-Vasi/Shopping-Cart">
 								<h3>Github repo</h3>
 							</a>
 						</div>

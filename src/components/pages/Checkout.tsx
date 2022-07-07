@@ -1,9 +1,20 @@
-import { State } from '../helpers/types'
-import { ButtonS } from '../styled-generics/ButtonS'
-import { ContainerS } from '../styled-generics/ContainerS'
 import { Link } from 'react-router-dom'
 
-function Checkout({ state }: { state: State }) {
+import { Action, Dispatch, State } from '../helpers/types'
+
+import { ButtonS } from '../styled-generics/ButtonS'
+
+import { ContainerS } from '../styled-generics/ContainerS'
+
+function Checkout({
+	state,
+	dispatch,
+	action,
+}: {
+	state: State
+	dispatch: React.Dispatch<Dispatch>
+	action: Action
+}) {
 	const randNum = (num: number): number => Math.floor(Math.random() * num)
 
 	return (

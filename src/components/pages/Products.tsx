@@ -1,7 +1,10 @@
 import React from 'react'
 import { NavLink, Route, Routes } from 'react-router-dom'
+
 import { State } from '../helpers/types'
+
 import { ContainerS } from '../styled-generics/ContainerS'
+
 import { AccessoriesProducts } from './AccessoriesProducts'
 import { AllProducts } from './AllProducts'
 import { MensProducts } from './MensProducts'

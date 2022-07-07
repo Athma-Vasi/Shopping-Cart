@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
+
 import { Action, Dispatch, State } from '../helpers/types'
+
 import { ButtonS } from '../styled-generics/ButtonS'
 import { ContainerS } from '../styled-generics/ContainerS'
-import { Link, Routes, Route } from 'react-router-dom'
-import { Checkout } from './Checkout'
 
 function Cashier({
 	state,
@@ -68,6 +69,24 @@ function Cashier({
 			})
 		}
 	}
+
+	async function handleCompleteOrderBttnClick(
+		ev: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	) {
+		const cloneState: State = structuredClone(state)
+		cloneState.women = new Map()
+		cloneState.men = new Map()
+		cloneState.accessories = new Map()
+		cloneState.totalCost = '0'
+
+		dispatch({
+			type: action.resetState,
+			payload: {
+				state: cloneState,
+			},
+		})
+	}
+
 	return (
 		<>
 			<ContainerS
@@ -231,7 +250,7 @@ function Cashier({
 
 				<div className="order-summary">
 					<h3>Order Summary</h3>
-					<p>(Includes G.S.T.)</p>
+					<p>( includes G.S.T. )</p>
 					<p>
 						Total price: $
 						{state.men.size === 0 &&
@@ -256,6 +275,7 @@ function Cashier({
 										? state.themeState.backgroundColour.dark
 										: state.themeState.backgroundColour.light
 								}
+								onClick={handleCompleteOrderBttnClick}
 							>
 								Complete order
 							</ButtonS>

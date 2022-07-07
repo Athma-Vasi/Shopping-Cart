@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom'
+
+import { State } from '../helpers/types'
+import { mensData } from '../helpers/data/mensData'
+
 import { ContainerS } from '../styled-generics/ContainerS'
 import { CardS } from '../styled-generics/CardS'
-import { mensData } from '../helpers/data/mensData'
-import { Link } from 'react-router-dom'
-import { State } from '../helpers/types'
 
 function MensProducts({ state }: { state: State }) {
 	return (

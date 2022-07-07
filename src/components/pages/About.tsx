@@ -1,4 +1,5 @@
 import { State } from '../helpers/types'
+
 import { ContainerS } from '../styled-generics/ContainerS'
 
 function About({ state }: { state: State }) {

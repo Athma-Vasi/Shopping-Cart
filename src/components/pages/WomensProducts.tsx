@@ -1,6 +1,8 @@
-import { Link, Routes, Route } from 'react-router-dom'
-import { womensData } from '../helpers/data/womensData'
+import { Link } from 'react-router-dom'
+
 import { State } from '../helpers/types'
+import { womensData } from '../helpers/data/womensData'
+
 import { CardS } from '../styled-generics/CardS'
 import { ContainerS } from '../styled-generics/ContainerS'
 

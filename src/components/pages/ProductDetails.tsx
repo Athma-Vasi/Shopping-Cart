@@ -1,14 +1,15 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { useParams } from 'react-router'
+
+import { Action, Dispatch, State } from '../helpers/types'
 import { womensData } from '../helpers/data/womensData'
-import { Cashier } from '../pages/Cashier'
-import { ButtonS } from '../styled-generics/ButtonS'
-import { ContainerS } from '../styled-generics/ContainerS'
 import { mensData } from '../helpers/data/mensData'
 import { accessoriesData } from '../helpers/data/accessoriesData'
+
+import { ButtonS } from '../styled-generics/ButtonS'
+import { ContainerS } from '../styled-generics/ContainerS'
 import { SelectS } from '../styled-generics/SelectS'
-import React, { useState } from 'react'
-import { Action, Dispatch, State } from '../helpers/types'
-import { Route, Routes, Link } from 'react-router-dom'
 
 function ProductDetails({
 	state,
