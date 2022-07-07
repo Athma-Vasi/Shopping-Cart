@@ -1,7 +1,8 @@
 import { NavLink, Link, Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import React from 'react'
 
-import { State, Dispatch, Action, ThemeState } from '../helpers/types'
+import { State, Action, ThemeState } from '../helpers/types'
+import { appReducer } from '../helpers/functions/appReducer'
 
 import { WrapperS } from '../styled-generics/WrapperS'
 import { ContainerS } from '../styled-generics/ContainerS'
@@ -50,63 +51,8 @@ const action: Action = {
 	resetState: 'resetState',
 }
 
-const reducer = function (state: State, action: Dispatch): State {
-	const clone: State = structuredClone(state)
-
-	switch (action.type) {
-		case 'addWomenItemsToCart': {
-			clone.women = action.payload.state.women
-			return clone
-		}
-		case 'removeWomenItemsFromCart': {
-			clone.women = action.payload.state.women
-			return clone
-		}
-
-		case 'addMenItemsToCart': {
-			clone.men = action.payload.state.men
-			return clone
-		}
-		case 'removeMenItemsFromCart': {
-			clone.men = action.payload.state.men
-			return clone
-		}
-
-		case 'addAccessoriesItemsToCart': {
-			clone.accessories = action.payload.state.accessories
-			return clone
-		}
-		case 'removeAccessoriesItemsFromCart': {
-			clone.accessories = action.payload.state.accessories
-			return clone
-		}
-
-		case 'updateTotalCost': {
-			clone.totalCost = action.payload.state.totalCost
-			return clone
-		}
-
-		case 'toggleTheme': {
-			clone.isDarkMode = action.payload.state.isDarkMode
-			return clone
-		}
-
-		case 'resetState': {
-			clone.accessories = action.payload.state.accessories
-			clone.women = action.payload.state.women
-			clone.men = action.payload.state.men
-			clone.totalCost = action.payload.state.totalCost
-			return clone
-		}
-
-		default: {
-			return clone
-		}
-	}
-}
-
 function Views() {
-	const [state, dispatch] = React.useReducer(reducer, initialState)
+	const [state, dispatch] = React.useReducer(appReducer, initialState)
 
 	function handleToggleThemeClick(ev: React.MouseEvent<HTMLLIElement, MouseEvent>) {
 		ev.preventDefault()
