@@ -259,6 +259,7 @@ function Cashier({
 							? '0.00'
 							: state.totalCost}
 					</p>
+
 					{state.men.size === 0 &&
 					state.women.size === 0 &&
 					state.accessories.size === 0 ? null : (
