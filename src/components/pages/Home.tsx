@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom'
+import React from 'react'
 
 import { State } from '../helpers/types'
 
@@ -10,7 +11,7 @@ import { WomensProducts } from './WomensProducts'
 
 function Home({ state }: { state: State }) {
 	return (
-		<div className="home">
+		<React.Fragment>
 			<ContainerS
 				colour={
 					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
@@ -72,7 +73,7 @@ function Home({ state }: { state: State }) {
 					element={<AccessoriesProducts state={state} />}
 				></Route>
 			</Routes>
-		</div>
+		</React.Fragment>
 	)
 }
 export { Home }

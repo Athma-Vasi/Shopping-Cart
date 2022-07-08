@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import React from 'react'
 
 import { Action, Dispatch, State } from '../helpers/types'
 
@@ -96,7 +97,7 @@ function Cashier({
 	}
 
 	return (
-		<>
+		<React.Fragment>
 			<ContainerS
 				colour={
 					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
@@ -319,7 +320,7 @@ function Cashier({
 					)}
 				</div>
 			</ContainerS>
-		</>
+		</React.Fragment>
 	)
 }
 export { Cashier }

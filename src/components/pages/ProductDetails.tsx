@@ -313,7 +313,7 @@ function ProductDetails({
 	}
 
 	return (
-		<>
+		<React.Fragment>
 			<ContainerS
 				colour={
 					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
@@ -407,7 +407,7 @@ function ProductDetails({
 					)}
 				</div>
 			</ContainerS>
-		</>
+		</React.Fragment>
 	)
 }
 export { ProductDetails }

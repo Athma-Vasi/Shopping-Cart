@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Action, Dispatch, State } from '../helpers/types'
@@ -18,7 +19,7 @@ function Checkout({
 	const randNum = (num: number): number => Math.floor(Math.random() * num)
 
 	return (
-		<>
+		<React.Fragment>
 			<h2 className="products-title">Checkout</h2>
 			<ContainerS
 				colour={
@@ -54,7 +55,7 @@ function Checkout({
 					</Link>
 				</div>
 			</ContainerS>
-		</>
+		</React.Fragment>
 	)
 }
 export { Checkout }

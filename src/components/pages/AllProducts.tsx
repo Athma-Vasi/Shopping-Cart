@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import React from 'react'
 
 import { State } from '../helpers/types'
 import { womensData } from '../helpers/data/womensData'
@@ -10,7 +11,7 @@ import { CardS } from '../styled-generics/CardS'
 
 function AllProducts({ state }: { state: State }) {
 	return (
-		<>
+		<React.Fragment>
 			<h3 className="products-title">All products</h3>
 			<ContainerS
 				colour={
@@ -149,7 +150,7 @@ function AllProducts({ state }: { state: State }) {
 					)
 				})}
 			</ContainerS>
-		</>
+		</React.Fragment>
 	)
 }
 export { AllProducts }
