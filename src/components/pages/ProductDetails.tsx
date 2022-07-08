@@ -77,11 +77,11 @@ function ProductDetails({
 				// const itemCost = Number(itemOptionAmount) * Number(itemPrice)
 				// const newTotalCost = prevTotalCost + itemCost
 				// cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
+
 				const prevTotalCost = Number(cloneState.totalCost)
 				const itemCost = Number(cloneState.women.get(idNum)?.get('itemTotal')) * 1.05
 				const newTotalCost = prevTotalCost + itemCost
 				cloneState.totalCost = newTotalCost.toFixed(2).toString()
-
 				console.log({ prevTotalCost })
 				console.log({ itemCost })
 				console.log({ newTotalCost })

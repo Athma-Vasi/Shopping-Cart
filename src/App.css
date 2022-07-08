@@ -209,11 +209,15 @@ li svg {
 	align-items: center;
 	width: 80vw;
 	height: 15vh;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .footer-line {
 	width: 80vw;
 	border-bottom: 1px solid lightcoral;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .footer-section h2 {
