@@ -10,7 +10,7 @@ import { WomensProducts } from './WomensProducts'
 
 function Home({ state }: { state: State }) {
 	return (
-		<>
+		<div className="home">
 			<ContainerS
 				colour={
 					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
@@ -58,8 +58,6 @@ function Home({ state }: { state: State }) {
 				</div>
 			</ContainerS>
 
-			{/*  */}
-			{/*  */}
 			<Routes>
 				<Route
 					path="products/products/womens"
@@ -74,7 +72,7 @@ function Home({ state }: { state: State }) {
 					element={<AccessoriesProducts state={state} />}
 				></Route>
 			</Routes>
-		</>
+		</div>
 	)
 }
 export { Home }

@@ -72,7 +72,7 @@ function Cashier({
 
 	async function handleCompleteOrderBttnClick(
 		ev: React.MouseEvent<HTMLButtonElement, MouseEvent>
-	) {
+	): Promise<void> {
 		const cloneState: State = structuredClone(state)
 		cloneState.women = new Map()
 		cloneState.men = new Map()

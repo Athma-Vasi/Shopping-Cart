@@ -158,19 +158,19 @@ function Views() {
 				<Routes>
 					<Route index element={<Home state={state} />} />
 					<Route path="Shopping-Cart/*" element={<Home state={state} />} />
-					<Route path="/" element={<Home state={state} />} />
-					<Route path="about" element={<About state={state} />} />
+					<Route path="/*" element={<Home state={state} />} />
+					<Route path="about/*" element={<About state={state} />} />
 					<Route path="products/*" element={<Products state={state} />} />
 					<Route
-						path="/products/:id"
+						path="/products/:id/*"
 						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
 					/>
 					<Route
-						path="cashier"
+						path="cashier/*"
 						element={<Cashier state={state} dispatch={dispatch} action={action} />}
 					/>
 					<Route
-						path="checkout"
+						path="checkout/*"
 						element={<Checkout state={state} dispatch={dispatch} action={action} />}
 					></Route>
 				</Routes>
