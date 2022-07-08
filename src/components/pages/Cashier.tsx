@@ -98,24 +98,39 @@ function Cashier({
 						? state.themeState.backgroundColour.dark
 						: state.themeState.backgroundColour.light
 				}
+				key={crypto.randomUUID()}
 			>
-				<div className="cart-summary">
+				<div className="cart-summary" key={crypto.randomUUID()}>
 					{state.accessories.size > 0 &&
 						Object.entries(Object.fromEntries(state.accessories)).map(
 							([key_, value_]) => {
 								return Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 									return (
 										<>
-											<div className="cart-item">
+											<div className="cart-item" key={crypto.randomUUID()}>
 												{key === 'src' ? (
-													<img src={value} alt="" width={150} height={225} />
+													<img
+														src={value}
+														alt=""
+														width={150}
+														height={225}
+														key={crypto.randomUUID()}
+													/>
 												) : null}
-												{key === 'itemName' ? <h3>{value}</h3> : null}
-												{key === 'itemAmount' ? <p>Quantity: {value}</p> : null}
-												{key === 'itemPrice' ? <p>Price: ${value}</p> : null}
-												{key === 'itemTotal' ? <p>Item total: ${value}</p> : null}
+												{key === 'itemName' ? (
+													<h3 key={crypto.randomUUID()}>{value}</h3>
+												) : null}
+												{key === 'itemAmount' ? (
+													<p key={crypto.randomUUID()}>Quantity: {value}</p>
+												) : null}
+												{key === 'itemPrice' ? (
+													<p key={crypto.randomUUID()}>Price: ${value}</p>
+												) : null}
+												{key === 'itemTotal' ? (
+													<p key={crypto.randomUUID()}>Item total: ${value}</p>
+												) : null}
 												{key === 'itemId' ? (
-													<div className="button-and-break" key={key}>
+													<div className="button-and-break" key={crypto.randomUUID()}>
 														<ButtonS
 															type="button"
 															value={value}
@@ -131,43 +146,50 @@ function Cashier({
 																	? state.themeState.backgroundColour.dark
 																	: state.themeState.backgroundColour.light
 															}
+															key={crypto.randomUUID()}
 														>
 															Remove item
 														</ButtonS>
-														<div className="line-break"></div>
+														<div className="line-break" key={crypto.randomUUID()}></div>
 													</div>
 												) : null}
 											</div>
 										</>
-
-										// <div className="cart-item">
-										// 	<img src={img} alt="" width={150} height={225} />
-										// 	<h3>{name}</h3>
-										// 	<p>Quantity: {amount}</p>
-										// 	<p>Price: ${price}</p>
-										// 	<p>Item total: ${total}</p>
-										// </div>
 									)
 								})
 							}
 						)}
 				</div>
 
-				<div className="cart-summary">
+				<div className="cart-summary" key={crypto.randomUUID()}>
 					{state.women.size > 0 &&
 						Object.entries(Object.fromEntries(state.women)).map(([key_, value_]) => {
 							return Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 								return (
-									<div className="cart-item">
+									<div className="cart-item" key={crypto.randomUUID()}>
 										{key === 'src' ? (
-											<img src={value} alt="" width={150} height={225} />
+											<img
+												src={value}
+												alt=""
+												width={150}
+												height={225}
+												key={crypto.randomUUID()}
+											/>
 										) : null}
-										{key === 'itemName' ? <h3>{value}</h3> : null}
-										{key === 'itemAmount' ? <p>Quantity: {value}</p> : null}
-										{key === 'itemPrice' ? <p>Price: ${value}</p> : null}
-										{key === 'itemTotal' ? <p>Item total: ${value}</p> : null}
+										{key === 'itemName' ? (
+											<h3 key={crypto.randomUUID()}>{value}</h3>
+										) : null}
+										{key === 'itemAmount' ? (
+											<p key={crypto.randomUUID()}>Quantity: {value}</p>
+										) : null}
+										{key === 'itemPrice' ? (
+											<p key={crypto.randomUUID()}>Price: ${value}</p>
+										) : null}
+										{key === 'itemTotal' ? (
+											<p key={crypto.randomUUID()}>Item total: ${value}</p>
+										) : null}
 										{key === 'itemId' ? (
-											<div className="button-and-break">
+											<div className="button-and-break" key={crypto.randomUUID()}>
 												<ButtonS
 													type="button"
 													value={value}
@@ -183,10 +205,11 @@ function Cashier({
 															? state.themeState.backgroundColour.dark
 															: state.themeState.backgroundColour.light
 													}
+													key={crypto.randomUUID()}
 												>
 													Remove item
 												</ButtonS>
-												<div className="line-break"></div>
+												<div className="line-break" key={crypto.randomUUID()}></div>
 											</div>
 										) : null}
 									</div>
@@ -195,21 +218,35 @@ function Cashier({
 						})}
 				</div>
 
-				<div className="cart-summary">
+				<div className="cart-summary" key={crypto.randomUUID()}>
 					{state.men.size > 0 &&
 						Object.entries(Object.fromEntries(state.men)).map(([key_, value_]) => {
 							return Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 								return (
-									<div className="cart-item">
+									<div className="cart-item" key={crypto.randomUUID()}>
 										{key === 'src' ? (
-											<img src={value} alt="" width={150} height={225} />
+											<img
+												src={value}
+												alt=""
+												width={150}
+												height={225}
+												key={crypto.randomUUID()}
+											/>
 										) : null}
-										{key === 'itemName' ? <h3>{value}</h3> : null}
-										{key === 'itemAmount' ? <p>Quantity: {value}</p> : null}
-										{key === 'itemPrice' ? <p>Price: ${value}</p> : null}
-										{key === 'itemTotal' ? <p>Item total: ${value}</p> : null}
+										{key === 'itemName' ? (
+											<h3 key={crypto.randomUUID()}>{value}</h3>
+										) : null}
+										{key === 'itemAmount' ? (
+											<p key={crypto.randomUUID()}>Quantity: {value}</p>
+										) : null}
+										{key === 'itemPrice' ? (
+											<p key={crypto.randomUUID()}>Price: ${value}</p>
+										) : null}
+										{key === 'itemTotal' ? (
+											<p key={crypto.randomUUID()}>Item total: ${value}</p>
+										) : null}
 										{key === 'itemId' ? (
-											<div className="button-and-break">
+											<div className="button-and-break" key={crypto.randomUUID()}>
 												<ButtonS
 													type="button"
 													value={value}
@@ -225,10 +262,11 @@ function Cashier({
 															? state.themeState.backgroundColour.dark
 															: state.themeState.backgroundColour.light
 													}
+													key={crypto.randomUUID()}
 												>
 													Remove item
 												</ButtonS>
-												<div className="line-break"></div>
+												<div className="line-break" key={crypto.randomUUID()}></div>
 											</div>
 										) : null}
 									</div>

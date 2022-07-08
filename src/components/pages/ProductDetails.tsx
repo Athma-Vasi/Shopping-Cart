@@ -57,128 +57,239 @@ function ProductDetails({
 			const cloneState: State = structuredClone(state)
 
 			if (itemCategory === 'women') {
-				cloneState.women.set(
-					idNum,
-					new Map([
-						['itemCategory', itemCategory],
-						['src', src],
-						['itemName', itemName],
-						['itemPrice', itemPrice],
-						['itemDescription', itemDescription],
-						['itemAmount', itemOptionAmount],
-						[
-							'itemTotal',
-							(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
-						],
-						['itemId', idNum],
-					])
-				)
-				// const prevTotalCost = Number(cloneState.totalCost)
-				// const itemCost = Number(itemOptionAmount) * Number(itemPrice)
-				// const newTotalCost = prevTotalCost + itemCost
-				// cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
+				if (cloneState.women.has(idNum)) {
+					const prevItemCost =
+						Number(cloneState.women.get(idNum)?.get('itemTotal')) * 1.05
+					const prevTotalCost = Number(cloneState.totalCost)
 
-				const prevTotalCost = Number(cloneState.totalCost)
-				const itemCost = Number(cloneState.women.get(idNum)?.get('itemTotal')) * 1.05
-				const newTotalCost = prevTotalCost + itemCost
-				cloneState.totalCost = newTotalCost.toFixed(2).toString()
-				console.log({ prevTotalCost })
-				console.log({ itemCost })
-				console.log({ newTotalCost })
-				console.log('clonestate.totalcost', cloneState.totalCost)
+					cloneState.women.set(
+						idNum,
+						new Map([
+							['itemCategory', itemCategory],
+							['src', src],
+							['itemName', itemName],
+							['itemPrice', itemPrice],
+							['itemDescription', itemDescription],
+							['itemAmount', itemOptionAmount],
+							[
+								'itemTotal',
+								(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
+							],
+							['itemId', idNum],
+						])
+					)
 
-				dispatch({
-					type: action.addWomenItemsToCart,
-					payload: {
-						state: cloneState,
-					},
-				})
+					dispatch({
+						type: action.addWomenItemsToCart,
+						payload: {
+							state: cloneState,
+						},
+					})
 
-				dispatch({
-					type: action.updateTotalCost,
-					payload: {
-						state: cloneState,
-					},
-				})
+					const newItemCost = Number(cloneState.women.get(idNum)?.get('itemTotal')) * 1.05
+					const totalCostWithPrevItemCostRemoved = prevTotalCost - prevItemCost
+					const newTotalCost = totalCostWithPrevItemCostRemoved + newItemCost
+					cloneState.totalCost = newTotalCost.toFixed(2).toString()
+
+					dispatch({
+						type: action.updateTotalCost,
+						payload: {
+							state: cloneState,
+						},
+					})
+				} else {
+					cloneState.women.set(
+						idNum,
+						new Map([
+							['itemCategory', itemCategory],
+							['src', src],
+							['itemName', itemName],
+							['itemPrice', itemPrice],
+							['itemDescription', itemDescription],
+							['itemAmount', itemOptionAmount],
+							[
+								'itemTotal',
+								(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
+							],
+							['itemId', idNum],
+						])
+					)
+
+					const prevTotalCost = Number(cloneState.totalCost)
+					const itemCost = Number(cloneState.women.get(idNum)?.get('itemTotal')) * 1.05
+					const newTotalCost = prevTotalCost + itemCost
+					cloneState.totalCost = newTotalCost.toFixed(2).toString()
+
+					dispatch({
+						type: action.addWomenItemsToCart,
+						payload: {
+							state: cloneState,
+						},
+					})
+
+					dispatch({
+						type: action.updateTotalCost,
+						payload: {
+							state: cloneState,
+						},
+					})
+				}
 			} else if (itemCategory === 'men') {
-				cloneState.men.set(
-					idNum,
-					new Map([
-						['itemCategory', itemCategory],
-						['src', src],
-						['itemName', itemName],
-						['itemPrice', itemPrice],
-						['itemDescription', itemDescription],
-						['itemAmount', itemOptionAmount],
-						[
-							'itemTotal',
-							(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
-						],
-						['itemId', idNum],
-					])
-				)
-				// const prevTotalCost = Number(cloneState.totalCost)
-				// const itemCost = Number(itemOptionAmount) * Number(itemPrice)
-				// const newTotalCost = prevTotalCost + itemCost
-				// cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
+				const prevItemCost = Number(cloneState.men.get(idNum)?.get('itemTotal')) * 1.05
 				const prevTotalCost = Number(cloneState.totalCost)
-				const itemCost = Number(cloneState.men.get(idNum)?.get('itemTotal')) * 1.05
-				const newTotalCost = prevTotalCost + itemCost
-				cloneState.totalCost = newTotalCost.toFixed(2).toString()
 
-				dispatch({
-					type: action.addMenItemsToCart,
-					payload: {
-						state: cloneState,
-					},
-				})
+				if (cloneState.men.has(idNum)) {
+					cloneState.men.set(
+						idNum,
+						new Map([
+							['itemCategory', itemCategory],
+							['src', src],
+							['itemName', itemName],
+							['itemPrice', itemPrice],
+							['itemDescription', itemDescription],
+							['itemAmount', itemOptionAmount],
+							[
+								'itemTotal',
+								(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
+							],
+							['itemId', idNum],
+						])
+					)
 
-				dispatch({
-					type: action.updateTotalCost,
-					payload: {
-						state: cloneState,
-					},
-				})
+					dispatch({
+						type: action.addMenItemsToCart,
+						payload: {
+							state: cloneState,
+						},
+					})
+
+					const newItemCost = Number(cloneState.men.get(idNum)?.get('itemTotal')) * 1.05
+					const totalCostWithPrevItemCostRemoved = prevTotalCost - prevItemCost
+					const newTotalCost = totalCostWithPrevItemCostRemoved + newItemCost
+					cloneState.totalCost = newTotalCost.toFixed(2).toString()
+
+					dispatch({
+						type: action.updateTotalCost,
+						payload: {
+							state: cloneState,
+						},
+					})
+				} else {
+					cloneState.men.set(
+						idNum,
+						new Map([
+							['itemCategory', itemCategory],
+							['src', src],
+							['itemName', itemName],
+							['itemPrice', itemPrice],
+							['itemDescription', itemDescription],
+							['itemAmount', itemOptionAmount],
+							[
+								'itemTotal',
+								(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
+							],
+							['itemId', idNum],
+						])
+					)
+
+					const prevTotalCost = Number(cloneState.totalCost)
+					const itemCost = Number(cloneState.men.get(idNum)?.get('itemTotal')) * 1.05
+					const newTotalCost = prevTotalCost + itemCost
+					cloneState.totalCost = newTotalCost.toFixed(2).toString()
+
+					dispatch({
+						type: action.addMenItemsToCart,
+						payload: {
+							state: cloneState,
+						},
+					})
+
+					dispatch({
+						type: action.updateTotalCost,
+						payload: {
+							state: cloneState,
+						},
+					})
+				}
 			} else if (itemCategory === 'accessories') {
-				cloneState.accessories.set(
-					idNum,
-					new Map([
-						['itemCategory', itemCategory],
-						['src', src],
-						['itemName', itemName],
-						['itemPrice', itemPrice],
-						['itemDescription', itemDescription],
-						['itemAmount', itemOptionAmount],
-						[
-							'itemTotal',
-							(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
-						],
-						['itemId', idNum],
-					])
-				)
-				// const prevTotalCost = Number(cloneState.totalCost)
-				// const itemCost = Number(itemOptionAmount) * Number(itemPrice)
-				// const newTotalCost = prevTotalCost + itemCost
-				// cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
-				const prevTotalCost = Number(cloneState.totalCost)
-				const itemCost =
-					Number(cloneState.accessories.get(idNum)?.get('itemTotal')) * 1.05
-				const newTotalCost = prevTotalCost + itemCost
-				cloneState.totalCost = newTotalCost.toFixed(2).toString()
+				if (cloneState.accessories.has(idNum)) {
+					const prevItemCost =
+						Number(cloneState.accessories.get(idNum)?.get('itemTotal')) * 1.05
+					const prevTotalCost = Number(cloneState.totalCost)
 
-				dispatch({
-					type: action.addAccessoriesItemsToCart,
-					payload: {
-						state: cloneState,
-					},
-				})
+					cloneState.accessories.set(
+						idNum,
+						new Map([
+							['itemCategory', itemCategory],
+							['src', src],
+							['itemName', itemName],
+							['itemPrice', itemPrice],
+							['itemDescription', itemDescription],
+							['itemAmount', itemOptionAmount],
+							[
+								'itemTotal',
+								(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
+							],
+							['itemId', idNum],
+						])
+					)
 
-				dispatch({
-					type: action.updateTotalCost,
-					payload: {
-						state: cloneState,
-					},
-				})
+					dispatch({
+						type: action.addAccessoriesItemsToCart,
+						payload: {
+							state: cloneState,
+						},
+					})
+
+					const newItemCost = Number(cloneState.men.get(idNum)?.get('itemTotal')) * 1.05
+					const totalCostWithPrevItemCostRemoved = prevTotalCost - prevItemCost
+					const newTotalCost = totalCostWithPrevItemCostRemoved + newItemCost
+					cloneState.totalCost = newTotalCost.toFixed(2).toString()
+
+					dispatch({
+						type: action.updateTotalCost,
+						payload: {
+							state: cloneState,
+						},
+					})
+				} else {
+					cloneState.accessories.set(
+						idNum,
+						new Map([
+							['itemCategory', itemCategory],
+							['src', src],
+							['itemName', itemName],
+							['itemPrice', itemPrice],
+							['itemDescription', itemDescription],
+							['itemAmount', itemOptionAmount],
+							[
+								'itemTotal',
+								(Number(itemOptionAmount) * Number(itemPrice)).toFixed(2).toString(),
+							],
+							['itemId', idNum],
+						])
+					)
+
+					const prevTotalCost = Number(cloneState.totalCost)
+					const itemCost =
+						Number(cloneState.accessories.get(idNum)?.get('itemTotal')) * 1.05
+					const newTotalCost = prevTotalCost + itemCost
+					cloneState.totalCost = newTotalCost.toFixed(2).toString()
+
+					dispatch({
+						type: action.addAccessoriesItemsToCart,
+						payload: {
+							state: cloneState,
+						},
+					})
+
+					dispatch({
+						type: action.updateTotalCost,
+						payload: {
+							state: cloneState,
+						},
+					})
+				}
 			}
 
 			setIsItemInCart(true)
