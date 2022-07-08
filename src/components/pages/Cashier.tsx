@@ -14,28 +14,34 @@ function Cashier({
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
 }) {
-	function handleRemoveCartItemBttnClick(ev: React.MouseEvent<HTMLButtonElement>) {
+	function handleRemoveCartItemBttnClick(ev: React.MouseEvent<HTMLButtonElement>): void {
 		ev.preventDefault()
 		const { name, value } = ev.currentTarget
 		const cloneState = structuredClone(state)
 
 		if (name === 'accessories') {
+			//remove the itemTotal plus tax from cartTotal and update the state
 			const itemTotal = Number(cloneState.accessories.get(value).get('itemTotal')) * 1.05
 			const cartTotal = Number(cloneState.totalCost)
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
 
+			//delete the item from the accessories state
 			cloneState.accessories.delete(value)
+			//update the accessories state
 			dispatch({
 				type: action.removeAccessoriesItemsFromCart,
 				payload: { state: cloneState },
 			})
 
+			//update the totalCost state
 			dispatch({
 				type: action.updateTotalCost,
 				payload: { state: cloneState },
 			})
-		} else if (name === 'women') {
+		}
+		//same logic as above for women and men
+		else if (name === 'women') {
 			const itemTotal = Number(cloneState.women.get(value).get('itemTotal')) * 1.05
 			const cartTotal = Number(cloneState.totalCost)
 			const newCartTotal = cartTotal - itemTotal
@@ -73,12 +79,14 @@ function Cashier({
 	async function handleCompleteOrderBttnClick(
 		ev: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	): Promise<void> {
+		//deep copy the state and reset state to values used in initialState
 		const cloneState: State = structuredClone(state)
 		cloneState.women = new Map()
 		cloneState.men = new Map()
 		cloneState.accessories = new Map()
 		cloneState.totalCost = '0'
 
+		//update state
 		dispatch({
 			type: action.resetState,
 			payload: {
