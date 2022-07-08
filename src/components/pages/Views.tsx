@@ -157,7 +157,7 @@ function Views() {
 
 				<Routes>
 					<Route index element={<Home state={state} />} />
-					<Route path="Shopping-Cart" element={<Home state={state} />} />
+					<Route path="Shopping-Cart/*" element={<Home state={state} />} />
 					<Route path="/" element={<Home state={state} />} />
 					<Route path="about" element={<About state={state} />} />
 					<Route path="products/*" element={<Products state={state} />} />

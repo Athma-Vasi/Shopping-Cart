@@ -20,8 +20,8 @@ function Cashier({
 		const cloneState = structuredClone(state)
 
 		if (name === 'accessories') {
-			const itemTotal = Number(cloneState.accessories.get(value).get('itemTotal'))
-			const cartTotal = Number(cloneState.totalCost) / 1.05
+			const itemTotal = Number(cloneState.accessories.get(value).get('itemTotal')) * 1.05
+			const cartTotal = Number(cloneState.totalCost)
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
 
@@ -36,8 +36,8 @@ function Cashier({
 				payload: { state: cloneState },
 			})
 		} else if (name === 'women') {
-			const itemTotal = Number(cloneState.women.get(value).get('itemTotal'))
-			const cartTotal = Number(cloneState.totalCost) / 1.05
+			const itemTotal = Number(cloneState.women.get(value).get('itemTotal')) * 1.05
+			const cartTotal = Number(cloneState.totalCost)
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
 
@@ -52,8 +52,8 @@ function Cashier({
 				payload: { state: cloneState },
 			})
 		} else if (name === 'men') {
-			const itemTotal = Number(cloneState.men.get(value).get('itemTotal'))
-			const cartTotal = Number(cloneState.totalCost) / 1.05
+			const itemTotal = Number(cloneState.men.get(value).get('itemTotal')) * 1.05
+			const cartTotal = Number(cloneState.totalCost)
 			const newCartTotal = cartTotal - itemTotal
 			cloneState.totalCost = newCartTotal.toFixed(2).toString()
 
@@ -104,17 +104,6 @@ function Cashier({
 						Object.entries(Object.fromEntries(state.accessories)).map(
 							([key_, value_]) => {
 								return Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
-									// let img
-									// let name
-									// let amount
-									// let price
-									// let total
-									// if (key === 'src') img = value
-									// if (key === 'itemName') name = value
-									// if (key === 'itemAmount') amount = value
-									// if (key === 'itemPrice') price = value
-									// if (key === 'itemTotal') total = value
-
 									return (
 										<>
 											<div className="cart-item">
@@ -126,7 +115,7 @@ function Cashier({
 												{key === 'itemPrice' ? <p>Price: ${value}</p> : null}
 												{key === 'itemTotal' ? <p>Item total: ${value}</p> : null}
 												{key === 'itemId' ? (
-													<div className="button-and-break">
+													<div className="button-and-break" key={key}>
 														<ButtonS
 															type="button"
 															value={value}

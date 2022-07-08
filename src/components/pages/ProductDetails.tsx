@@ -47,7 +47,7 @@ function ProductDetails({
 
 	const randNum = (num: number): number => Math.floor(Math.random() * num)
 
-	function handleAddToCartBttnClick(ev: React.FormEvent<HTMLFormElement>) {
+	async function handleAddToCartBttnClick(ev: React.FormEvent<HTMLFormElement>) {
 		ev.preventDefault()
 
 		const formData = new FormData(ev.currentTarget)
@@ -73,10 +73,19 @@ function ProductDetails({
 						['itemId', idNum],
 					])
 				)
+				// const prevTotalCost = Number(cloneState.totalCost)
+				// const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				// const newTotalCost = prevTotalCost + itemCost
+				// cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 				const prevTotalCost = Number(cloneState.totalCost)
-				const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				const itemCost = Number(cloneState.women.get(idNum)?.get('itemTotal')) * 1.05
 				const newTotalCost = prevTotalCost + itemCost
-				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
+				cloneState.totalCost = newTotalCost.toFixed(2).toString()
+
+				console.log({ prevTotalCost })
+				console.log({ itemCost })
+				console.log({ newTotalCost })
+				console.log('clonestate.totalcost', cloneState.totalCost)
 
 				dispatch({
 					type: action.addWomenItemsToCart,
@@ -84,8 +93,6 @@ function ProductDetails({
 						state: cloneState,
 					},
 				})
-
-				console.log(cloneState.totalCost)
 
 				dispatch({
 					type: action.updateTotalCost,
@@ -110,10 +117,14 @@ function ProductDetails({
 						['itemId', idNum],
 					])
 				)
+				// const prevTotalCost = Number(cloneState.totalCost)
+				// const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				// const newTotalCost = prevTotalCost + itemCost
+				// cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 				const prevTotalCost = Number(cloneState.totalCost)
-				const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				const itemCost = Number(cloneState.men.get(idNum)?.get('itemTotal')) * 1.05
 				const newTotalCost = prevTotalCost + itemCost
-				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
+				cloneState.totalCost = newTotalCost.toFixed(2).toString()
 
 				dispatch({
 					type: action.addMenItemsToCart,
@@ -145,10 +156,15 @@ function ProductDetails({
 						['itemId', idNum],
 					])
 				)
+				// const prevTotalCost = Number(cloneState.totalCost)
+				// const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				// const newTotalCost = prevTotalCost + itemCost
+				// cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
 				const prevTotalCost = Number(cloneState.totalCost)
-				const itemCost = Number(itemOptionAmount) * Number(itemPrice)
+				const itemCost =
+					Number(cloneState.accessories.get(idNum)?.get('itemTotal')) * 1.05
 				const newTotalCost = prevTotalCost + itemCost
-				cloneState.totalCost = (newTotalCost * 1.05).toFixed(2).toString()
+				cloneState.totalCost = newTotalCost.toFixed(2).toString()
 
 				dispatch({
 					type: action.addAccessoriesItemsToCart,
