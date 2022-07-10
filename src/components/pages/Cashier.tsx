@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import React from 'react'
 
 import { Action, Dispatch, State } from '../helpers/types'
@@ -98,6 +98,7 @@ function Cashier({
 
 	return (
 		<React.Fragment>
+			<Outlet></Outlet>
 			<ContainerS
 				colour={
 					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
@@ -299,7 +300,7 @@ function Cashier({
 					{state.men.size === 0 &&
 					state.women.size === 0 &&
 					state.accessories.size === 0 ? null : (
-						<Link to="/checkout">
+						<Link to="checkout">
 							<ButtonS
 								type="button"
 								colour={

@@ -1,4 +1,11 @@
-import { NavLink, Link, Route, Routes, BrowserRouter as Router } from 'react-router-dom'
+import {
+	NavLink,
+	Link,
+	Route,
+	Routes,
+	BrowserRouter as Router,
+	Outlet,
+} from 'react-router-dom'
 import React from 'react'
 
 import { State, Action, ThemeState } from '../helpers/types'
@@ -13,6 +20,10 @@ import { Home } from './Home'
 import { ProductDetails } from './ProductDetails'
 import { Products } from './Products'
 import { Checkout } from './Checkout'
+import { AllProducts } from './AllProducts'
+import { AccessoriesProducts } from './AccessoriesProducts'
+import { MensProducts } from './MensProducts'
+import { WomensProducts } from './WomensProducts'
 
 const themeState: ThemeState = {
 	colour: {
@@ -82,7 +93,7 @@ function Views() {
 				}
 			>
 				<nav className="navbar">
-					<NavLink to="/">
+					<NavLink to="home">
 						<h1>THE FASHION EMPORIUM</h1>
 					</NavLink>
 					<ul className="links-ul">
@@ -95,7 +106,7 @@ function Views() {
 										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
-								to="/"
+								to="home"
 							>
 								Home
 							</NavLink>
@@ -156,23 +167,151 @@ function Views() {
 				<div className="navbar-line"></div>
 
 				<Routes>
+					{/*  */}
 					<Route index element={<Home state={state} />} />
-					<Route path="Shopping-Cart/*" element={<Home state={state} />} />
-					<Route path="/*" element={<Home state={state} />} />
-					<Route path="about/*" element={<About state={state} />} />
-					<Route path="products/*" element={<Products state={state} />} />
+
+					<Route path="home" element={<Home state={state} />}>
+						{/*  */}
+						<Route
+							path="products/womens"
+							element={
+								<WomensProducts state={state} dispatch={dispatch} action={action} />
+							}
+						></Route>
+
+						<Route
+							path="products/accessories"
+							element={
+								<AccessoriesProducts state={state} dispatch={dispatch} action={action} />
+							}
+						></Route>
+
+						<Route
+							path="products/mens"
+							element={<MensProducts state={state} dispatch={dispatch} action={action} />}
+						></Route>
+						{/*  */}
+					</Route>
+
+					<Route path="about" element={<About state={state} />} />
+
 					<Route
-						path="/products/:id/*"
-						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
-					/>
+						path="products"
+						element={<Products state={state} dispatch={dispatch} action={action} />}
+					>
+						{/*  */}
+						<Route
+							index
+							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
+						></Route>
+
+						<Route
+							path="all/*"
+							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
+						>
+							<Route
+								path=":id"
+								element={
+									<ProductDetails state={state} dispatch={dispatch} action={action} />
+								}
+							>
+								<Route
+									path="cashier"
+									element={<Cashier state={state} dispatch={dispatch} action={action} />}
+								>
+									<Route
+										path="checkout"
+										element={
+											<Checkout state={state} dispatch={dispatch} action={action} />
+										}
+									></Route>
+								</Route>
+							</Route>
+						</Route>
+
+						<Route
+							path="accessories/*"
+							element={
+								<AccessoriesProducts state={state} dispatch={dispatch} action={action} />
+							}
+						>
+							<Route
+								path=":id"
+								element={
+									<ProductDetails state={state} dispatch={dispatch} action={action} />
+								}
+							>
+								<Route
+									path="cashier"
+									element={<Cashier state={state} dispatch={dispatch} action={action} />}
+								>
+									<Route
+										path="checkout"
+										element={
+											<Checkout state={state} dispatch={dispatch} action={action} />
+										}
+									></Route>
+								</Route>
+							</Route>
+						</Route>
+
+						<Route
+							path="mens/*"
+							element={<MensProducts state={state} dispatch={dispatch} action={action} />}
+						>
+							<Route
+								path=":id"
+								element={
+									<ProductDetails state={state} dispatch={dispatch} action={action} />
+								}
+							>
+								<Route
+									path="cashier"
+									element={<Cashier state={state} dispatch={dispatch} action={action} />}
+								>
+									<Route
+										path="checkout"
+										element={
+											<Checkout state={state} dispatch={dispatch} action={action} />
+										}
+									></Route>
+								</Route>
+							</Route>
+						</Route>
+
+						<Route
+							path="womens/*"
+							element={
+								<WomensProducts state={state} dispatch={dispatch} action={action} />
+							}
+						>
+							<Route
+								path=":id"
+								element={
+									<ProductDetails state={state} dispatch={dispatch} action={action} />
+								}
+							>
+								<Route
+									path="cashier"
+									element={<Cashier state={state} dispatch={dispatch} action={action} />}
+								>
+									<Route
+										path="checkout"
+										element={
+											<Checkout state={state} dispatch={dispatch} action={action} />
+										}
+									></Route>
+								</Route>
+							</Route>
+						</Route>
+						{/*  */}
+					</Route>
+
 					<Route
-						path="cashier/*"
+						path="cashier"
 						element={<Cashier state={state} dispatch={dispatch} action={action} />}
 					/>
-					<Route
-						path="checkout/*"
-						element={<Checkout state={state} dispatch={dispatch} action={action} />}
-					></Route>
+					{/*  */}
 				</Routes>
 
 				<footer>

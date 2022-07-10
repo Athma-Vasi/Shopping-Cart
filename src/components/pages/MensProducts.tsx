@@ -1,15 +1,24 @@
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import React from 'react'
 
-import { State } from '../helpers/types'
+import { Action, Dispatch, State } from '../helpers/types'
 import { mensData } from '../helpers/data/mensData'
 
 import { ContainerS } from '../styled-generics/ContainerS'
 import { CardS } from '../styled-generics/CardS'
 
-function MensProducts({ state }: { state: State }) {
+function MensProducts({
+	state,
+	dispatch,
+	action,
+}: {
+	state: State
+	dispatch: React.Dispatch<Dispatch>
+	action: Action
+}) {
 	return (
 		<React.Fragment>
+			<Outlet></Outlet>
 			<h3 className="products-title">Men's fashion</h3>
 			<ContainerS
 				colour={
@@ -24,7 +33,7 @@ function MensProducts({ state }: { state: State }) {
 			>
 				{Object.entries(Object.fromEntries(mensData)).map(([key_, value_]) => {
 					return (
-						<Link to={`/products/men-${key_}`} key={crypto.randomUUID()}>
+						<Link to={`men-${key_}`} key={crypto.randomUUID()}>
 							<CardS
 								colour={
 									state.isDarkMode

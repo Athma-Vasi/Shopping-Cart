@@ -1,7 +1,7 @@
 import React from 'react'
-import { NavLink, Route, Routes } from 'react-router-dom'
+import { NavLink, Outlet, Route, Routes } from 'react-router-dom'
 
-import { State } from '../helpers/types'
+import { Action, Dispatch, State } from '../helpers/types'
 
 import { ContainerS } from '../styled-generics/ContainerS'
 
@@ -10,7 +10,15 @@ import { AllProducts } from './AllProducts'
 import { MensProducts } from './MensProducts'
 import { WomensProducts } from './WomensProducts'
 
-function Products({ state }: { state: State }) {
+function Products({
+	state,
+	dispatch,
+	action,
+}: {
+	state: State
+	dispatch: React.Dispatch<Dispatch>
+	action: Action
+}) {
 	return (
 		<React.Fragment>
 			<ContainerS
@@ -35,7 +43,7 @@ function Products({ state }: { state: State }) {
 										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
-								to="products/all"
+								to="all"
 							>
 								All
 							</NavLink>
@@ -49,7 +57,7 @@ function Products({ state }: { state: State }) {
 										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
-								to="products/accessories"
+								to="accessories"
 							>
 								Accessories
 							</NavLink>
@@ -63,7 +71,7 @@ function Products({ state }: { state: State }) {
 										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
-								to="products/mens"
+								to="mens"
 							>
 								Men's fashion
 							</NavLink>
@@ -77,7 +85,7 @@ function Products({ state }: { state: State }) {
 										color: isActive ? 'lightcoral' : 'inherit',
 									}
 								}}
-								to="products/womens"
+								to="womens"
 							>
 								Women's fashion
 							</NavLink>
@@ -86,9 +94,20 @@ function Products({ state }: { state: State }) {
 				</div>
 
 				<div className="productListing">
-					<Routes>
-						<Route index element={<AllProducts state={state} />} />
-						<Route path="products/all" element={<AllProducts state={state} />} />
+					<Outlet></Outlet>
+					{/* <Routes>
+						<Route
+							index
+							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
+						/>
+						<Route
+							path="products/products/:id"
+							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
+						/>
+						<Route
+							path="products/all"
+							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
+						/>
 						<Route
 							path="products/accessories"
 							element={<AccessoriesProducts state={state} />}
@@ -98,7 +117,7 @@ function Products({ state }: { state: State }) {
 							path="products/womens"
 							element={<WomensProducts state={state} />}
 						></Route>
-					</Routes>
+					</Routes> */}
 				</div>
 			</ContainerS>
 		</React.Fragment>
