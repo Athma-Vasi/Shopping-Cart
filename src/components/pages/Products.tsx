@@ -1,14 +1,9 @@
 import React from 'react'
-import { NavLink, Outlet, Route, Routes } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 import { Action, Dispatch, State } from '../helpers/types'
 
 import { ContainerS } from '../styled-generics/ContainerS'
-
-import { AccessoriesProducts } from './AccessoriesProducts'
-import { AllProducts } from './AllProducts'
-import { MensProducts } from './MensProducts'
-import { WomensProducts } from './WomensProducts'
 
 function Products({
 	state,

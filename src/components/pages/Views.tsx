@@ -1,11 +1,4 @@
-import {
-	NavLink,
-	Link,
-	Route,
-	Routes,
-	BrowserRouter as Router,
-	Outlet,
-} from 'react-router-dom'
+import { NavLink, Link, Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import React from 'react'
 
 import { State, Action, ThemeState } from '../helpers/types'

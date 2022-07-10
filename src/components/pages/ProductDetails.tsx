@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Outlet, useParams } from 'react-router'
+import { useParams } from 'react-router'
 
 import { Action, Dispatch, State } from '../helpers/types'
 import { womensData } from '../helpers/data/womensData'
@@ -23,9 +23,7 @@ function ProductDetails({
 	const [isItemInCart, setIsItemInCart] = React.useState(false)
 
 	const { id } = useParams()
-	console.log(id)
 	const [category, idNum] = id?.split('-') ?? []
-	console.log(category, idNum)
 	const product: [string, string][] =
 		category === 'women'
 			? Object.entries(

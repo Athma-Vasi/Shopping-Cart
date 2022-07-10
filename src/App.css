@@ -4,7 +4,6 @@ html {
 	padding: 0;
 	outline: 0;
 	box-sizing: border-box;
-
 	font-family: serif;
 }
 
@@ -25,7 +24,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 90vw;
+	width: 85vw;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -47,7 +46,7 @@ body {
 	align-items: center;
 	padding: 0px 2rem;
 	gap: 3rem;
-	width: 50vw;
+	width: 40vw;
 }
 
 li {
@@ -98,8 +97,8 @@ li svg {
 }
 
 .about-page {
-	padding-left: 35rem;
-	padding-right: 35rem;
+	padding-left: 25rem;
+	padding-right: 25rem;
 }
 
 .about-page h2 {
