@@ -236,6 +236,19 @@ function Views() {
 					></Route>
 
 					<Route
+						path="products/accessories/:id"
+						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
+					></Route>
+					<Route
+						path="products/accessories/:id/cashier"
+						element={<Cashier state={state} dispatch={dispatch} action={action} />}
+					></Route>
+					<Route
+						path="products/accessories/:id/cashier/checkout"
+						element={<Checkout state={state} dispatch={dispatch} action={action} />}
+					></Route>
+
+					<Route
 						path="products/womens/:id"
 						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
 					></Route>

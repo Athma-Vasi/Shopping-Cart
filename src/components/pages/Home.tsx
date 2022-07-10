@@ -31,7 +31,7 @@ function Home({ state }: { state: State }) {
 					/>
 					<figcaption>Photo by SHVETS production at pexels.com</figcaption>
 					<h4>Comfy. Chic. Loungewear.</h4>
-					<Link to="products/womens">Shop Collection</Link>
+					<Link to="/products/womens">Shop Collection</Link>
 				</div>
 
 				<div className="homepage-photo">
@@ -43,7 +43,7 @@ function Home({ state }: { state: State }) {
 					/>
 					<figcaption>Photo by Julia Volk at pexels.com</figcaption>
 					<h4>Creative. Technology. Professional.</h4>
-					<Link to="products/accessories">Shop Collection</Link>
+					<Link to="/products/accessories">Shop Collection</Link>
 				</div>
 
 				<div className="homepage-photo">
@@ -55,7 +55,7 @@ function Home({ state }: { state: State }) {
 					/>
 					<figcaption>Photo by Spencer Selover at pexels.com</figcaption>
 					<h4>Crypto. Blockchain. Web 3.0</h4>
-					<Link to="products/mens">Shop Collection</Link>
+					<Link to="/products/mens">Shop Collection</Link>
 				</div>
 			</ContainerS>
 
