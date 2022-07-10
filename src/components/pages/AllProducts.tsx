@@ -8,7 +8,6 @@ import { accessoriesData } from '../helpers/data/accessoriesData'
 
 import { ContainerS } from '../styled-generics/ContainerS'
 import { CardS } from '../styled-generics/CardS'
-import { ProductDetails } from './ProductDetails'
 
 function AllProducts({
 	state,
@@ -19,10 +18,8 @@ function AllProducts({
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
 }) {
-	console.log('allproducts')
 	return (
 		<React.Fragment>
-			<Outlet></Outlet>
 			<h3 className="products-title">All products</h3>
 			<ContainerS
 				colour={
@@ -161,13 +158,6 @@ function AllProducts({
 					)
 				})}
 			</ContainerS>
-
-			{/* <Routes>
-				<Route
-					path=":id"
-					element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
-				></Route>
-			</Routes> */}
 		</React.Fragment>
 	)
 }

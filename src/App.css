@@ -188,11 +188,22 @@ li svg {
 	margin-bottom: 3rem;
 }
 
+.products {
+	display: grid;
+	grid-template-columns: repeat(38.2% 61.8%);
+	grid-template-rows: repeat(auto-fit);
+	grid-gap: 1rem;
+	grid-template-areas: 'sidebar productListing';
+	padding-left: 5rem;
+}
+
 .sidebar {
+	grid-area: sidebar;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
+	padding-right: 3rem;
 }
 
 .sidebar h3 {
@@ -201,6 +212,14 @@ li svg {
 
 .sidebar li {
 	font-size: 2rem;
+}
+
+.productListing {
+	grid-area: productListing;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .footer-section {

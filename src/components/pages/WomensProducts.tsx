@@ -18,7 +18,6 @@ function WomensProducts({
 }) {
 	return (
 		<React.Fragment>
-			<Outlet></Outlet>
 			<h3 className="products-title">Women's fashion</h3>
 			<ContainerS
 				colour={

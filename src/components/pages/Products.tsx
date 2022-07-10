@@ -31,93 +31,72 @@ function Products({
 						: state.themeState.backgroundColour.light
 				}
 			>
-				<div className="sidebar">
-					<h3>Categories</h3>
-					<ul>
-						<li>
-							<NavLink
-								style={({ isActive }) => {
-									return {
-										display: 'block',
-										margin: '1rem 0px',
-										color: isActive ? 'lightcoral' : 'inherit',
-									}
-								}}
-								to="all"
-							>
-								All
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								style={({ isActive }) => {
-									return {
-										display: 'block',
-										margin: '1rem 0px',
-										color: isActive ? 'lightcoral' : 'inherit',
-									}
-								}}
-								to="accessories"
-							>
-								Accessories
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								style={({ isActive }) => {
-									return {
-										display: 'block',
-										margin: '1rem 0px',
-										color: isActive ? 'lightcoral' : 'inherit',
-									}
-								}}
-								to="mens"
-							>
-								Men's fashion
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								style={({ isActive }) => {
-									return {
-										display: 'block',
-										margin: '1rem 0px',
-										color: isActive ? 'lightcoral' : 'inherit',
-									}
-								}}
-								to="womens"
-							>
-								Women's fashion
-							</NavLink>
-						</li>
-					</ul>
-				</div>
+				<div className="products">
+					<div className="sidebar">
+						<h3>Categories</h3>
+						<ul>
+							<li>
+								<NavLink
+									style={({ isActive }) => {
+										return {
+											display: 'block',
+											margin: '1rem 0px',
+											color: isActive ? 'lightcoral' : 'inherit',
+										}
+									}}
+									to="all"
+								>
+									All
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
+									style={({ isActive }) => {
+										return {
+											display: 'block',
+											margin: '1rem 0px',
+											color: isActive ? 'lightcoral' : 'inherit',
+										}
+									}}
+									to="accessories"
+								>
+									Accessories
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
+									style={({ isActive }) => {
+										return {
+											display: 'block',
+											margin: '1rem 0px',
+											color: isActive ? 'lightcoral' : 'inherit',
+										}
+									}}
+									to="mens"
+								>
+									Men's fashion
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
+									style={({ isActive }) => {
+										return {
+											display: 'block',
+											margin: '1rem 0px',
+											color: isActive ? 'lightcoral' : 'inherit',
+										}
+									}}
+									to="womens"
+								>
+									Women's fashion
+								</NavLink>
+							</li>
+						</ul>
+					</div>
 
-				<div className="productListing">
-					<Outlet></Outlet>
-					{/* <Routes>
-						<Route
-							index
-							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
-						/>
-						<Route
-							path="products/products/:id"
-							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
-						/>
-						<Route
-							path="products/all"
-							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
-						/>
-						<Route
-							path="products/accessories"
-							element={<AccessoriesProducts state={state} />}
-						/>
-						<Route path="products/mens" element={<MensProducts state={state} />} />
-						<Route
-							path="products/womens"
-							element={<WomensProducts state={state} />}
-						></Route>
-					</Routes> */}
+					<div className="productListing">
+						<Outlet></Outlet>
+					</div>
 				</div>
 			</ContainerS>
 		</React.Fragment>
