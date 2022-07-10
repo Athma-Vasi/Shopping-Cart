@@ -98,10 +98,8 @@ li svg {
 }
 
 .about-page {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	padding-left: 35rem;
+	padding-right: 35rem;
 }
 
 .about-page h2 {
