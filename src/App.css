@@ -162,13 +162,6 @@ li svg {
 	font-size: 2rem;
 }
 
-.cart-summary {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-}
-
 .button-and-break {
 	display: grid;
 	place-content: center;
@@ -263,13 +256,22 @@ svg:hover {
 	cursor: pointer;
 }
 
+.cart-summary {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding-left: 10rem;
+}
+
 .order-summary {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	font-size: 2rem;
-	margin-left: 3rem;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .order-summary button {

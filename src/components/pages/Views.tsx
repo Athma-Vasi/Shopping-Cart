@@ -208,7 +208,12 @@ function Views() {
 					<Route
 						path="cashier"
 						element={<Cashier state={state} dispatch={dispatch} action={action} />}
-					></Route>
+					>
+						<Route
+							path="checkout"
+							element={<Cashier state={state} dispatch={dispatch} action={action} />}
+						></Route>
+					</Route>
 
 					<Route
 						path="products/:id"
