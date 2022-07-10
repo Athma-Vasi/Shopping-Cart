@@ -316,7 +316,6 @@ function ProductDetails({
 
 	return (
 		<React.Fragment>
-			<Outlet></Outlet>
 			<ContainerS
 				colour={
 					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light

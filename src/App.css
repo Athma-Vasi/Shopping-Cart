@@ -125,6 +125,8 @@ li svg {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin-right: auto;
+	margin-left: auto;
 }
 .product-image:hover {
 	transform: scale(1.382);
@@ -142,8 +144,7 @@ li svg {
 	align-items: flex-start;
 	height: 60rem;
 	font-size: 2rem;
-	padding: 0px 2rem;
-	margin-left: 2rem;
+	margin-right: auto;
 }
 
 .product-details select {
@@ -293,6 +294,14 @@ svg:hover {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.itemsInCart button {
+	transform: scale(1.382);
+}
+
+.itemsInCart button:hover {
+	transform: scale(1.618);
 }
 
 .checkout {
