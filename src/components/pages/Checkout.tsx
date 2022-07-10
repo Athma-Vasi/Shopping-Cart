@@ -36,7 +36,7 @@ function Checkout({
 					<h4>Expect a notification in your email within the hour.</h4>
 					<h4>Predicted delivery time: {randNum(48)} hrs</h4>
 					<h4>Thank you for shopping with us!</h4>
-					<Link to="/products/products/all">
+					<Link to="/products/all">
 						<ButtonS
 							colour={
 								state.isDarkMode
