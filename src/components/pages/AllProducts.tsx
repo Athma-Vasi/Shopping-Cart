@@ -19,7 +19,7 @@ function AllProducts({
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
 	themeState: ThemeState
-}) {
+}): JSX.Element {
 	return (
 		<React.Fragment>
 			<h3 className="products-title">All products</h3>

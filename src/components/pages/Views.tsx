@@ -42,11 +42,11 @@ const action: Action = {
 	resetState: 'resetState',
 }
 
-function Views() {
+function Views(): JSX.Element {
 	const [themeState, themeDispatch] = React.useReducer(themeReducer, initialThemeState)
 	const [state, dispatch] = React.useReducer(appReducer, initialState)
 
-	function handleToggleThemeClick(ev: React.MouseEvent<HTMLLIElement, MouseEvent>) {
+	function handleToggleThemeClick(ev: React.MouseEvent<HTMLLIElement, MouseEvent>): void {
 		ev.preventDefault()
 
 		const cloneThemeState: ThemeState = structuredClone(themeState)
@@ -84,6 +84,13 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
+										borderBottom: isActive
+											? `2px solid ${
+													themeState.isDefaultMode
+														? themeState.colours.default?.primary
+														: themeState.colours.dark?.primary
+											  }`
+											: 'inherit',
 										color: isActive
 											? `${
 													themeState.isDefaultMode
@@ -104,6 +111,13 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
+										borderBottom: isActive
+											? `2px solid ${
+													themeState.isDefaultMode
+														? themeState.colours.default?.primary
+														: themeState.colours.dark?.primary
+											  }`
+											: 'inherit',
 										color: isActive
 											? `${
 													themeState.isDefaultMode
@@ -124,6 +138,13 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
+										borderBottom: isActive
+											? `2px solid ${
+													themeState.isDefaultMode
+														? themeState.colours.default?.primary
+														: themeState.colours.dark?.primary
+											  }`
+											: 'inherit',
 										color: isActive
 											? `${
 													themeState.isDefaultMode
@@ -144,6 +165,13 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
+										borderBottom: isActive
+											? `2px solid ${
+													themeState.isDefaultMode
+														? themeState.colours.default?.primary
+														: themeState.colours.dark?.primary
+											  }`
+											: 'inherit',
 										color: isActive
 											? `${
 													themeState.isDefaultMode

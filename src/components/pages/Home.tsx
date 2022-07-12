@@ -5,7 +5,13 @@ import { State, ThemeState } from '../helpers/types'
 
 import { ContainerS } from '../styled-generics/ContainerS'
 
-function Home({ state, themeState }: { state: State; themeState: ThemeState }) {
+function Home({
+	state,
+	themeState,
+}: {
+	state: State
+	themeState: ThemeState
+}): JSX.Element {
 	return (
 		<React.Fragment>
 			<ContainerS themeState={themeState}>

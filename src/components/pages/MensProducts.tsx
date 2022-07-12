@@ -17,7 +17,7 @@ function MensProducts({
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
 	themeState: ThemeState
-}) {
+}): JSX.Element {
 	return (
 		<React.Fragment>
 			<h3 className="products-title">Men's fashion</h3>

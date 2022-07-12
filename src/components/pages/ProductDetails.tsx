@@ -21,7 +21,7 @@ function ProductDetails({
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
 	themeState: ThemeState
-}) {
+}): JSX.Element {
 	const [isItemInCart, setIsItemInCart] = React.useState(false)
 
 	const { id } = useParams()

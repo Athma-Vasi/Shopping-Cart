@@ -2,7 +2,13 @@ import { State, ThemeState } from '../helpers/types'
 
 import { ContainerS } from '../styled-generics/ContainerS'
 
-function About({ state, themeState }: { state: State; themeState: ThemeState }) {
+function About({
+	state,
+	themeState,
+}: {
+	state: State
+	themeState: ThemeState
+}): JSX.Element {
 	return (
 		<div className="about-page">
 			<ContainerS themeState={themeState}>
