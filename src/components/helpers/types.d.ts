@@ -1,23 +1,10 @@
 type ItemData = Map<number, Map<string, string>>
 
-type ThemeState = {
-	colour: {
-		light: string
-		dark: string
-	}
-	backgroundColour: {
-		light: string
-		dark: string
-	}
-}
-
 type State = {
 	women: Map<string, Map<string, string>>
 	men: Map<string, Map<string, string>>
 	accessories: Map<string, Map<string, string>>
 	totalCost: string
-	themeState: ThemeState
-	isDarkMode: boolean
 }
 
 type Dispatch = {
@@ -38,9 +25,49 @@ type Action = {
 	removeAccessoriesItemsFromCart: 'removeAccessoriesItemsFromCart'
 
 	updateTotalCost: 'updateTotalCost'
-	toggleTheme: 'toggleTheme'
 
 	resetState: 'resetState'
 }
 
-export { ItemData, State, Dispatch, Action, ThemeState }
+type ThemeState = {
+	isDefaultMode: boolean
+	isDarkMode: boolean
+
+	colours: {
+		default?: {
+			primary?: string
+			textColour?: string
+			backgroundColour?: string
+		}
+		dark?: {
+			primary?: string
+			textColour?: string
+			backgroundColour?: string
+		}
+	}
+	fonts: {
+		serif?: string[]
+		sansSerif?: string[]
+		monospace?: string[]
+	}
+	fontSizes: {
+		small?: string
+		medium?: string
+		large?: string
+		xlarge?: string
+	}
+}
+
+type ThemeAction = {
+	setDefault: 'setDefault'
+	setDark: 'setDark'
+}
+
+type ThemeDispatch = {
+	type: string
+	payload: {
+		themeState: ThemeState
+	}
+}
+
+export { ItemData, State, Dispatch, Action, ThemeState, ThemeAction, ThemeDispatch }

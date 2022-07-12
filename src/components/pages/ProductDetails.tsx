@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router'
 
-import { Action, Dispatch, State } from '../helpers/types'
+import { Action, Dispatch, State, ThemeState } from '../helpers/types'
 import { womensData } from '../helpers/data/womensData'
 import { mensData } from '../helpers/data/mensData'
 import { accessoriesData } from '../helpers/data/accessoriesData'
@@ -15,10 +15,12 @@ function ProductDetails({
 	state,
 	dispatch,
 	action,
+	themeState,
 }: {
 	state: State
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
+	themeState: ThemeState
 }) {
 	const [isItemInCart, setIsItemInCart] = React.useState(false)
 
@@ -314,16 +316,7 @@ function ProductDetails({
 
 	return (
 		<React.Fragment>
-			<ContainerS
-				colour={
-					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
-				}
-				backgroundColour={
-					state.isDarkMode
-						? state.themeState.backgroundColour.dark
-						: state.themeState.backgroundColour.light
-				}
-			>
+			<ContainerS themeState={themeState}>
 				<div className="product-image">
 					<img src={src} alt={itemDescription} width={320} height={480}></img>
 					<figcaption>
@@ -344,20 +337,7 @@ function ProductDetails({
 						onSubmit={handleAddToCartBttnClick}
 					>
 						<label htmlFor="select-items"></label>
-						<SelectS
-							name="addCart"
-							id="select-items"
-							colour={
-								state.isDarkMode
-									? state.themeState.colour.dark
-									: state.themeState.colour.light
-							}
-							backgroundColour={
-								state.isDarkMode
-									? state.themeState.backgroundColour.dark
-									: state.themeState.backgroundColour.light
-							}
-						>
+						<SelectS name="addCart" id="select-items" themeState={themeState}>
 							<option value="">--Please choose an amount--</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -365,20 +345,7 @@ function ProductDetails({
 							<option value="4">4</option>
 							<option value="5">5</option>
 						</SelectS>
-						<ButtonS
-							type="submit"
-							name="addCart"
-							colour={
-								state.isDarkMode
-									? state.themeState.colour.dark
-									: state.themeState.colour.light
-							}
-							backgroundColour={
-								state.isDarkMode
-									? state.themeState.backgroundColour.dark
-									: state.themeState.backgroundColour.light
-							}
-						>
+						<ButtonS type="submit" name="addCart" themeState={themeState}>
 							Add to Cart
 						</ButtonS>
 					</form>
@@ -387,19 +354,7 @@ function ProductDetails({
 						<div className="itemsInCart">
 							<h3>Item has been added to cart!</h3>
 							<Link to="cashier">
-								<ButtonS
-									type="button"
-									colour={
-										state.isDarkMode
-											? state.themeState.colour.dark
-											: state.themeState.colour.light
-									}
-									backgroundColour={
-										state.isDarkMode
-											? state.themeState.backgroundColour.dark
-											: state.themeState.backgroundColour.light
-									}
-								>
+								<ButtonS type="button" themeState={themeState}>
 									Complete order and checkout
 								</ButtonS>
 							</Link>

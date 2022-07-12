@@ -1,8 +1,34 @@
 import styled from 'styled-components'
 
 type ContainerProps = {
-	colour?: string
-	backgroundColour?: string
+	themeState: {
+		isDefaultMode: boolean
+		isDarkMode: boolean
+
+		colours: {
+			default?: {
+				primary?: string
+				textColour?: string
+				backgroundColour?: string
+			}
+			dark?: {
+				primary?: string
+				textColour?: string
+				backgroundColour?: string
+			}
+		}
+		fonts: {
+			serif?: string[]
+			sansSerif?: string[]
+			monospace?: string[]
+		}
+		fontSizes: {
+			small?: string
+			medium?: string
+			large?: string
+			xlarge?: string
+		}
+	}
 }
 
 const ContainerS = styled.div<ContainerProps>`
@@ -19,9 +45,10 @@ const ContainerS = styled.div<ContainerProps>`
 	width: 100%;
 	height: auto;
 
-	color: ${({ colour }) => (colour ? colour : 'hsl(180, 100%, 25%)')};
-	background-color: ${({ backgroundColour }) =>
-		backgroundColour ? backgroundColour : 'white'};
+	color: ${({ themeState: { isDefaultMode, colours } }) =>
+		isDefaultMode ? colours?.default?.textColour : colours?.dark?.textColour};
+	background-color: ${({ themeState: { isDefaultMode, colours } }) =>
+		isDefaultMode ? colours?.default?.backgroundColour : colours?.dark?.backgroundColour};
 
 	display: flex;
 	flex-wrap: wrap;

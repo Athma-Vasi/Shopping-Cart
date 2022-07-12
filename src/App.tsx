@@ -1,11 +1,14 @@
 import './App.css'
 import React from 'react'
 import { Views } from './components/pages/Views'
+import { initialThemeState, Theme } from './components/style/Theme'
 
 function App() {
 	return (
 		<React.Fragment>
-			<Views></Views>
+			<Theme themeState={initialThemeState}>
+				<Views></Views>
+			</Theme>
 		</React.Fragment>
 	)
 }

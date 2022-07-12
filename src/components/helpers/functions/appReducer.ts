@@ -36,11 +36,6 @@ const appReducer = function (state: State, action: Dispatch): State {
 			return clone
 		}
 
-		case 'toggleTheme': {
-			clone.isDarkMode = action.payload.state.isDarkMode
-			return clone
-		}
-
 		case 'resetState': {
 			clone.accessories = action.payload.state.accessories
 			clone.women = action.payload.state.women

@@ -31,7 +31,6 @@ body {
 
 .navbar h1 {
 	font-size: 5rem;
-	color: lightcoral;
 }
 
 .navbar > * {
@@ -103,7 +102,6 @@ li svg {
 
 .about-page h2 {
 	font-size: 5rem;
-	color: hsl(0, 79%, 72%);
 }
 
 .about-page p {

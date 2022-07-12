@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 
-import { Action, Dispatch, State } from '../helpers/types'
+import {
+	Action,
+	Dispatch,
+	State,
+	ThemeAction,
+	ThemeDispatch,
+	ThemeState,
+} from '../helpers/types'
 
 import { ButtonS } from '../styled-generics/ButtonS'
 import { ContainerS } from '../styled-generics/ContainerS'
@@ -10,10 +17,12 @@ function Cashier({
 	state,
 	dispatch,
 	action,
+	themeState,
 }: {
 	state: State
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
+	themeState: ThemeState
 }) {
 	function handleRemoveCartItemBttnClick(ev: React.MouseEvent<HTMLButtonElement>): void {
 		ev.preventDefault()
@@ -98,17 +107,7 @@ function Cashier({
 
 	return (
 		<React.Fragment>
-			<ContainerS
-				colour={
-					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
-				}
-				backgroundColour={
-					state.isDarkMode
-						? state.themeState.backgroundColour.dark
-						: state.themeState.backgroundColour.light
-				}
-				key={crypto.randomUUID()}
-			>
+			<ContainerS themeState={themeState} key={crypto.randomUUID()}>
 				<div className="cart-summary" key={crypto.randomUUID()}>
 					{state.accessories.size > 0 &&
 						Object.entries(Object.fromEntries(state.accessories)).map(
@@ -145,16 +144,7 @@ function Cashier({
 															value={value}
 															name="accessories"
 															onClick={handleRemoveCartItemBttnClick}
-															colour={
-																state.isDarkMode
-																	? state.themeState.colour.dark
-																	: state.themeState.colour.light
-															}
-															backgroundColour={
-																state.isDarkMode
-																	? state.themeState.backgroundColour.dark
-																	: state.themeState.backgroundColour.light
-															}
+															themeState={themeState}
 															key={crypto.randomUUID()}
 														>
 															Remove item
@@ -204,16 +194,7 @@ function Cashier({
 													value={value}
 													name="women"
 													onClick={handleRemoveCartItemBttnClick}
-													colour={
-														state.isDarkMode
-															? state.themeState.colour.dark
-															: state.themeState.colour.light
-													}
-													backgroundColour={
-														state.isDarkMode
-															? state.themeState.backgroundColour.dark
-															: state.themeState.backgroundColour.light
-													}
+													themeState={themeState}
 													key={crypto.randomUUID()}
 												>
 													Remove item
@@ -261,16 +242,7 @@ function Cashier({
 													value={value}
 													name="men"
 													onClick={handleRemoveCartItemBttnClick}
-													colour={
-														state.isDarkMode
-															? state.themeState.colour.dark
-															: state.themeState.colour.light
-													}
-													backgroundColour={
-														state.isDarkMode
-															? state.themeState.backgroundColour.dark
-															: state.themeState.backgroundColour.light
-													}
+													themeState={themeState}
 													key={crypto.randomUUID()}
 												>
 													Remove item
@@ -302,16 +274,7 @@ function Cashier({
 						<Link to="checkout">
 							<ButtonS
 								type="button"
-								colour={
-									state.isDarkMode
-										? state.themeState.colour.dark
-										: state.themeState.colour.light
-								}
-								backgroundColour={
-									state.isDarkMode
-										? state.themeState.backgroundColour.dark
-										: state.themeState.backgroundColour.light
-								}
+								themeState={themeState}
 								onClick={handleCompleteOrderBttnClick}
 							>
 								Complete order

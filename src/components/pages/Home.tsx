@@ -1,23 +1,14 @@
 import { Link, Outlet } from 'react-router-dom'
 import React from 'react'
 
-import { State } from '../helpers/types'
+import { State, ThemeState } from '../helpers/types'
 
 import { ContainerS } from '../styled-generics/ContainerS'
 
-function Home({ state }: { state: State }) {
+function Home({ state, themeState }: { state: State; themeState: ThemeState }) {
 	return (
 		<React.Fragment>
-			<ContainerS
-				colour={
-					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
-				}
-				backgroundColour={
-					state.isDarkMode
-						? state.themeState.backgroundColour.dark
-						: state.themeState.backgroundColour.light
-				}
-			>
+			<ContainerS themeState={themeState}>
 				<div className="homepage-photo">
 					<img
 						src="https://images.pexels.com/photos/6975251/pexels-photo-6975251.jpeg"

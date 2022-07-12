@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 
-import { Action, Dispatch, State } from '../helpers/types'
+import { Action, Dispatch, State, ThemeState } from '../helpers/types'
 import { womensData } from '../helpers/data/womensData'
 
 import { CardS } from '../styled-generics/CardS'
@@ -11,41 +11,21 @@ function WomensProducts({
 	state,
 	dispatch,
 	action,
+	themeState,
 }: {
 	state: State
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
+	themeState: ThemeState
 }) {
 	return (
 		<React.Fragment>
 			<h3 className="products-title">Women's fashion</h3>
-			<ContainerS
-				colour={
-					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
-				}
-				backgroundColour={
-					state.isDarkMode
-						? state.themeState.backgroundColour.dark
-						: state.themeState.backgroundColour.light
-				}
-				key={crypto.randomUUID()}
-			>
+			<ContainerS themeState={themeState} key={crypto.randomUUID()}>
 				{Object.entries(Object.fromEntries(womensData)).map(([key_, value_]) => {
 					return (
 						<Link to={`women-${key_}`} key={crypto.randomUUID()}>
-							<CardS
-								colour={
-									state.isDarkMode
-										? state.themeState.colour.dark
-										: state.themeState.colour.light
-								}
-								backgroundColour={
-									state.isDarkMode
-										? state.themeState.backgroundColour.dark
-										: state.themeState.backgroundColour.light
-								}
-								key={crypto.randomUUID()}
-							>
+							<CardS themeState={themeState} key={crypto.randomUUID()}>
 								{Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 									return key === 'src' ? (
 										<img

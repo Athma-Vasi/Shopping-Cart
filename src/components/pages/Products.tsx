@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 
-import { Action, Dispatch, State } from '../helpers/types'
+import { Action, Dispatch, State, ThemeState } from '../helpers/types'
 
 import { ContainerS } from '../styled-generics/ContainerS'
 
@@ -9,23 +9,16 @@ function Products({
 	state,
 	dispatch,
 	action,
+	themeState,
 }: {
 	state: State
 	dispatch: React.Dispatch<Dispatch>
 	action: Action
+	themeState: ThemeState
 }) {
 	return (
 		<React.Fragment>
-			<ContainerS
-				colour={
-					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
-				}
-				backgroundColour={
-					state.isDarkMode
-						? state.themeState.backgroundColour.dark
-						: state.themeState.backgroundColour.light
-				}
-			>
+			<ContainerS themeState={themeState}>
 				<div className="products">
 					<div className="sidebar">
 						<h3>Categories</h3>
@@ -36,7 +29,13 @@ function Products({
 										return {
 											display: 'block',
 											margin: '1rem 0px',
-											color: isActive ? 'lightcoral' : 'inherit',
+											color: isActive
+												? `${
+														themeState.isDefaultMode
+															? themeState.colours.default?.primary
+															: themeState.colours.dark?.primary
+												  }`
+												: 'inherit',
 										}
 									}}
 									to="all"
@@ -50,7 +49,13 @@ function Products({
 										return {
 											display: 'block',
 											margin: '1rem 0px',
-											color: isActive ? 'lightcoral' : 'inherit',
+											color: isActive
+												? `${
+														themeState.isDefaultMode
+															? themeState.colours.default?.primary
+															: themeState.colours.dark?.primary
+												  }`
+												: 'inherit',
 										}
 									}}
 									to="accessories"
@@ -64,7 +69,13 @@ function Products({
 										return {
 											display: 'block',
 											margin: '1rem 0px',
-											color: isActive ? 'lightcoral' : 'inherit',
+											color: isActive
+												? `${
+														themeState.isDefaultMode
+															? themeState.colours.default?.primary
+															: themeState.colours.dark?.primary
+												  }`
+												: 'inherit',
 										}
 									}}
 									to="mens"
@@ -78,7 +89,13 @@ function Products({
 										return {
 											display: 'block',
 											margin: '1rem 0px',
-											color: isActive ? 'lightcoral' : 'inherit',
+											color: isActive
+												? `${
+														themeState.isDefaultMode
+															? themeState.colours.default?.primary
+															: themeState.colours.dark?.primary
+												  }`
+												: 'inherit',
 										}
 									}}
 									to="womens"

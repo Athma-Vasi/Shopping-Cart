@@ -3,6 +3,7 @@ import React from 'react'
 
 import { State, Action, ThemeState } from '../helpers/types'
 import { appReducer } from '../helpers/functions/appReducer'
+import { themeReducer } from '../helpers/functions/themeReducer'
 
 import { WrapperS } from '../styled-generics/WrapperS'
 import { ContainerS } from '../styled-generics/ContainerS'
@@ -17,25 +18,13 @@ import { AllProducts } from './AllProducts'
 import { AccessoriesProducts } from './AccessoriesProducts'
 import { MensProducts } from './MensProducts'
 import { WomensProducts } from './WomensProducts'
-
-const themeState: ThemeState = {
-	colour: {
-		light: 'hsl(0, 0%, 25%)',
-		dark: 'hsl(0, 0%, 75%)',
-	},
-	backgroundColour: {
-		light: 'hsl(0, 0%, 97%)',
-		dark: 'hsl(0, 0%, 11%)',
-	},
-}
+import { initialThemeState, themeAction } from '../style/Theme'
 
 const initialState: State = {
 	women: new Map(),
 	men: new Map(),
 	accessories: new Map(),
 	totalCost: '0',
-	themeState: themeState,
-	isDarkMode: false,
 }
 
 const action: Action = {
@@ -50,44 +39,43 @@ const action: Action = {
 
 	updateTotalCost: 'updateTotalCost',
 
-	toggleTheme: 'toggleTheme',
-
 	resetState: 'resetState',
 }
 
 function Views() {
+	const [themeState, themeDispatch] = React.useReducer(themeReducer, initialThemeState)
 	const [state, dispatch] = React.useReducer(appReducer, initialState)
 
 	function handleToggleThemeClick(ev: React.MouseEvent<HTMLLIElement, MouseEvent>) {
 		ev.preventDefault()
 
-		const cloneState: State = structuredClone(state)
+		const cloneThemeState: ThemeState = structuredClone(themeState)
 		ev.currentTarget.textContent = ev.currentTarget.textContent === '🌑' ? '☀️' : '🌑'
-		cloneState.isDarkMode = ev.currentTarget.textContent === '🌑' ? true : false
+		cloneThemeState.isDarkMode = ev.currentTarget.textContent === '🌑' ? true : false
+		cloneThemeState.isDefaultMode = cloneThemeState.isDarkMode ? false : true
 
-		dispatch({
-			type: action.toggleTheme,
+		themeDispatch({
+			type: cloneThemeState.isDarkMode ? themeAction.setDark : themeAction.setDefault,
 			payload: {
-				state: cloneState,
+				themeState: cloneThemeState,
 			},
 		})
 	}
 
 	return (
 		<Router>
-			<WrapperS
-				colour={
-					state.isDarkMode ? state.themeState.colour.dark : state.themeState.colour.light
-				}
-				backgroundColour={
-					state.isDarkMode
-						? state.themeState.backgroundColour.dark
-						: state.themeState.backgroundColour.light
-				}
-			>
+			<WrapperS themeState={themeState}>
 				<nav className="navbar">
 					<NavLink to="home">
-						<h1>THE FASHION EMPORIUM</h1>
+						<h1
+							style={{
+								color: themeState.isDefaultMode
+									? themeState.colours.default?.primary
+									: themeState.colours.dark?.primary,
+							}}
+						>
+							THE FASHION EMPORIUM
+						</h1>
 					</NavLink>
 					<ul className="links-ul">
 						<li>
@@ -96,7 +84,13 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'lightcoral' : 'inherit',
+										color: isActive
+											? `${
+													themeState.isDefaultMode
+														? themeState.colours.default?.primary
+														: themeState.colours.dark?.primary
+											  }`
+											: 'inherit',
 									}
 								}}
 								to="home"
@@ -110,7 +104,13 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'lightcoral' : 'inherit',
+										color: isActive
+											? `${
+													themeState.isDefaultMode
+														? themeState.colours.default?.primary
+														: themeState.colours.dark?.primary
+											  }`
+											: 'inherit',
 									}
 								}}
 								to="about"
@@ -124,7 +124,13 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'lightcoral' : 'inherit',
+										color: isActive
+											? `${
+													themeState.isDefaultMode
+														? themeState.colours.default?.primary
+														: themeState.colours.dark?.primary
+											  }`
+											: 'inherit',
 									}
 								}}
 								to="products"
@@ -138,7 +144,13 @@ function Views() {
 									return {
 										display: 'block',
 										margin: '1rem 0px',
-										color: isActive ? 'lightcoral' : 'inherit',
+										color: isActive
+											? `${
+													themeState.isDefaultMode
+														? themeState.colours.default?.primary
+														: themeState.colours.dark?.primary
+											  }`
+											: 'inherit',
 									}
 								}}
 								to="cashier"
@@ -160,133 +172,288 @@ function Views() {
 				<div className="navbar-line"></div>
 
 				<Routes>
-					<Route index element={<Home state={state} />}></Route>
-					<Route path="home" element={<Home state={state} />}></Route>
-					<Route path="about" element={<About state={state} />}></Route>
-					<Route path="Shopping-Cart" element={<Home state={state} />}></Route>
+					<Route index element={<Home state={state} themeState={themeState} />}></Route>
+					<Route
+						path="home"
+						element={<Home state={state} themeState={themeState} />}
+					></Route>
+					<Route
+						path="about"
+						element={<About state={state} themeState={themeState} />}
+					></Route>
+					<Route
+						path="Shopping-Cart"
+						element={<Home state={state} themeState={themeState} />}
+					></Route>
 					<Route
 						path="products"
-						element={<Products state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Products
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					>
 						<Route
 							index
-							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
+							element={
+								<AllProducts
+									state={state}
+									dispatch={dispatch}
+									action={action}
+									themeState={themeState}
+								/>
+							}
 						></Route>
 
 						<Route
 							path="all"
-							element={<AllProducts state={state} dispatch={dispatch} action={action} />}
+							element={
+								<AllProducts
+									state={state}
+									dispatch={dispatch}
+									action={action}
+									themeState={themeState}
+								/>
+							}
 						></Route>
 
 						<Route
 							path="accessories"
 							element={
-								<AccessoriesProducts state={state} dispatch={dispatch} action={action} />
+								<AccessoriesProducts
+									state={state}
+									dispatch={dispatch}
+									action={action}
+									themeState={themeState}
+								/>
 							}
 						></Route>
 
 						<Route
 							path="womens"
 							element={
-								<WomensProducts state={state} dispatch={dispatch} action={action} />
+								<WomensProducts
+									state={state}
+									dispatch={dispatch}
+									action={action}
+									themeState={themeState}
+								/>
 							}
 						></Route>
 
 						<Route
 							path="mens"
-							element={<MensProducts state={state} dispatch={dispatch} action={action} />}
+							element={
+								<MensProducts
+									state={state}
+									dispatch={dispatch}
+									action={action}
+									themeState={themeState}
+								/>
+							}
 						></Route>
 					</Route>
 
 					<Route
 						path="cashier"
-						element={<Cashier state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Cashier
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					>
 						<Route
 							path="checkout"
-							element={<Cashier state={state} dispatch={dispatch} action={action} />}
+							element={
+								<Cashier
+									state={state}
+									dispatch={dispatch}
+									action={action}
+									themeState={themeState}
+								/>
+							}
 						></Route>
 					</Route>
 
 					<Route
 						path="products/:id"
-						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
+						element={
+							<ProductDetails
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/:id/cashier"
-						element={<Cashier state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Cashier
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/:id/cashier/checkout"
-						element={<Checkout state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Checkout
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 
 					<Route
 						path="products/all/:id"
-						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
+						element={
+							<ProductDetails
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/all/:id/cashier"
-						element={<Cashier state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Cashier
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/all/:id/cashier/checkout"
-						element={<Checkout state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Checkout
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 
 					<Route
 						path="products/accessories/:id"
-						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
+						element={
+							<ProductDetails
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/accessories/:id/cashier"
-						element={<Cashier state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Cashier
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/accessories/:id/cashier/checkout"
-						element={<Checkout state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Checkout
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 
 					<Route
 						path="products/womens/:id"
-						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
+						element={
+							<ProductDetails
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/womens/:id/cashier"
-						element={<Cashier state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Cashier
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/womens/:id/cashier/checkout"
-						element={<Checkout state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Checkout
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 
 					<Route
 						path="products/mens/:id"
-						element={<ProductDetails state={state} dispatch={dispatch} action={action} />}
+						element={
+							<ProductDetails
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/mens/:id/cashier"
-						element={<Cashier state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Cashier
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 					<Route
 						path="products/mens/:id/cashier/checkout"
-						element={<Checkout state={state} dispatch={dispatch} action={action} />}
+						element={
+							<Checkout
+								state={state}
+								dispatch={dispatch}
+								action={action}
+								themeState={themeState}
+							/>
+						}
 					></Route>
 				</Routes>
 
 				<footer>
-					<ContainerS
-						colour={
-							state.isDarkMode
-								? state.themeState.colour.dark
-								: state.themeState.colour.light
-						}
-						backgroundColour={
-							state.isDarkMode
-								? state.themeState.backgroundColour.dark
-								: state.themeState.backgroundColour.light
-						}
-					>
+					<ContainerS themeState={themeState}>
 						<div className="footer-line"></div>
 						<div className="footer-section">
 							<h2>Who we are</h2>

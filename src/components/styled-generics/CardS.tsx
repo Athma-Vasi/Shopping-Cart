@@ -1,8 +1,34 @@
 import styled from 'styled-components'
 
 type CardProps = {
-	colour?: string
-	backgroundColour?: string
+	themeState: {
+		isDefaultMode: boolean
+		isDarkMode: boolean
+
+		colours: {
+			default?: {
+				primary?: string
+				textColour?: string
+				backgroundColour?: string
+			}
+			dark?: {
+				primary?: string
+				textColour?: string
+				backgroundColour?: string
+			}
+		}
+		fonts: {
+			serif?: string[]
+			sansSerif?: string[]
+			monospace?: string[]
+		}
+		fontSizes: {
+			small?: string
+			medium?: string
+			large?: string
+			xlarge?: string
+		}
+	}
 }
 
 const CardS = styled.div<CardProps>`
@@ -23,9 +49,10 @@ const CardS = styled.div<CardProps>`
 
 	transition: 146ms all ease-in-out;
 
-	color: ${({ colour }) => (colour ? colour : 'hsl(180, 100%, 25%)')};
-	background-color: ${({ backgroundColour }) =>
-		backgroundColour ? backgroundColour : 'white'};
+	color: ${({ themeState: { isDefaultMode, colours } }) =>
+		isDefaultMode ? colours?.default?.textColour : colours?.dark?.textColour};
+	background-color: ${({ themeState: { isDefaultMode, colours } }) =>
+		isDefaultMode ? colours?.default?.backgroundColour : colours?.dark?.backgroundColour};
 
 	// width: min(40ch, 100% - 2rem);
 	// width: clamp(150px, 30vw, 300px);
@@ -39,7 +66,8 @@ const CardS = styled.div<CardProps>`
 		transform: scale(1.0382);
 	}
 
-	// border: 1px solid ${({ colour }) => (colour ? colour : 'hsl(180, 100%, 25%)')};
+	// border: 1px solid ${({ themeState: { isDefaultMode, colours } }) =>
+		isDefaultMode ? colours?.default?.textColour : colours?.dark?.textColour};
 	border-radius: 4px;
 `
 
