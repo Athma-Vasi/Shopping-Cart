@@ -169,7 +169,16 @@ function Views() {
 						</li>
 					</ul>
 				</nav>
-				<div className="navbar-line"></div>
+				<div
+					className="navbar-line"
+					style={{
+						borderBottom: `1px solid ${
+							themeState.isDefaultMode
+								? themeState.colours.default?.primary
+								: themeState.colours.dark?.primary
+						}`,
+					}}
+				></div>
 
 				<Routes>
 					<Route index element={<Home state={state} themeState={themeState} />}></Route>
@@ -454,7 +463,16 @@ function Views() {
 
 				<footer>
 					<ContainerS themeState={themeState}>
-						<div className="footer-line"></div>
+						<div
+							className="footer-line"
+							style={{
+								borderBottom: `1px solid ${
+									themeState.isDefaultMode
+										? themeState.colours.default?.primary
+										: themeState.colours.dark?.primary
+								}`,
+							}}
+						></div>
 						<div className="footer-section">
 							<h2>Who we are</h2>
 							<Link to="about">
