@@ -1,7 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { ThemeAction, ThemeDispatch, ThemeState } from '../helpers/types'
-import { themeReducer } from '../helpers/functions/themeReducer'
+import { ThemeAction, ThemeState } from '../helpers/types'
 
 const initialThemeState: ThemeState = {
 	isDefaultMode: true,

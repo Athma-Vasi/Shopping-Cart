@@ -1,14 +1,7 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 
-import {
-	Action,
-	Dispatch,
-	State,
-	ThemeAction,
-	ThemeDispatch,
-	ThemeState,
-} from '../helpers/types'
+import { Action, Dispatch, State, ThemeState } from '../helpers/types'
 
 import { ButtonS } from '../styled-generics/ButtonS'
 import { ContainerS } from '../styled-generics/ContainerS'
