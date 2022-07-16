@@ -26,19 +26,38 @@ function AccessoriesProducts({
 			<ContainerS themeState={themeState}>
 				{Object.entries(Object.fromEntries(accessoriesData)).map(([key_, value_]) => {
 					return (
-						<Link to={`accessories-${key_}`} key={key_}>
+						<Link
+							to={`accessories-${key_}`}
+							key={key_}
+							data-cy="accessoriesProducts-accessoriesCard"
+						>
 							<CardS themeState={themeState}>
 								{Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 									return key === 'src' ? (
-										<img key={key} src={value} alt="" width={150} height={225}></img>
+										<img
+											key={key}
+											src={value}
+											alt=""
+											width={150}
+											height={225}
+											data-cy="accessoriesProducts-accessoriesCard-img"
+										></img>
 									) : key === 'category' ? null : key === 'author' ? null : key ===
 									  'site' ? null : key === 'itemDescription' ? null : key ===
 									  'itemPrice' ? (
-										<h4 className="product-text" key={key}>
+										<h4
+											className="product-text"
+											key={key}
+											data-cy="accessoriesProducts-accessoriesCard-name"
+										>
 											${value}
 										</h4>
 									) : (
-										<h4 className="product-text" key={key}>
+										<h4
+											className="product-text"
+											key={key}
+											data-cy="accessoriesProducts-accessoriesCard-price"
+										>
 											{value}
 										</h4>
 									)

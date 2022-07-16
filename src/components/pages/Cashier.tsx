@@ -100,99 +100,75 @@ function Cashier({
 
 	return (
 		<React.Fragment>
-			<ContainerS themeState={themeState} key={crypto.randomUUID()}>
-				<div className="cart-summary" key={crypto.randomUUID()}>
+			<ContainerS themeState={themeState}>
+				<div className="cart-summary">
 					{state.accessories.size > 0 &&
 						Object.entries(Object.fromEntries(state.accessories)).map(
 							([key_, value_]) => {
 								return Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 									return (
-										<>
-											<div className="cart-item" key={crypto.randomUUID()}>
-												{key === 'src' ? (
-													<img
-														src={value}
-														alt=""
-														width={150}
-														height={225}
-														key={crypto.randomUUID()}
-													/>
-												) : null}
-												{key === 'itemName' ? (
-													<h3 key={crypto.randomUUID()}>{value}</h3>
-												) : null}
-												{key === 'itemAmount' ? (
-													<p key={crypto.randomUUID()}>Quantity: {value}</p>
-												) : null}
-												{key === 'itemPrice' ? (
-													<p key={crypto.randomUUID()}>Price: ${value}</p>
-												) : null}
-												{key === 'itemTotal' ? (
-													<p key={crypto.randomUUID()}>Item total: ${value}</p>
-												) : null}
-												{key === 'itemId' ? (
-													<div className="button-and-break" key={crypto.randomUUID()}>
-														<ButtonS
-															type="button"
-															value={value}
-															name="accessories"
-															onClick={handleRemoveCartItemBttnClick}
-															themeState={themeState}
-															key={crypto.randomUUID()}
-														>
-															Remove item
-														</ButtonS>
-														<div className="line-break" key={crypto.randomUUID()}></div>
-													</div>
-												) : null}
-											</div>
-										</>
+										<div className="cart-item" key={JSON.stringify(value)}>
+											{key === 'src' ? (
+												<img src={value} alt="" width={150} height={225} key={key} />
+											) : null}
+											{key === 'itemName' ? <h3 key={key}>{value}</h3> : null}
+											{key === 'itemAmount' ? <p key={key}>Quantity: {value}</p> : null}
+											{key === 'itemPrice' ? <p key={key}>Price: ${value}</p> : null}
+											{key === 'itemTotal' ? <p key={key}>Item total: ${value}</p> : null}
+											{key === 'itemId' ? (
+												<div className="button-and-break" key={key}>
+													<ButtonS
+														type="button"
+														value={value}
+														name="accessories"
+														onClick={handleRemoveCartItemBttnClick}
+														themeState={themeState}
+														key={`${key}_${value}`}
+													>
+														Remove item
+													</ButtonS>
+													<div
+														className="line-break"
+														key={`${key_}_${key}_${value}`}
+													></div>
+												</div>
+											) : null}
+										</div>
 									)
 								})
 							}
 						)}
 				</div>
 
-				<div className="cart-summary" key={crypto.randomUUID()}>
+				<div className="cart-summary">
 					{state.women.size > 0 &&
 						Object.entries(Object.fromEntries(state.women)).map(([key_, value_]) => {
 							return Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 								return (
-									<div className="cart-item" key={crypto.randomUUID()}>
+									<div className="cart-item" key={JSON.stringify(value)}>
 										{key === 'src' ? (
-											<img
-												src={value}
-												alt=""
-												width={150}
-												height={225}
-												key={crypto.randomUUID()}
-											/>
+											<img src={value} alt="" width={150} height={225} key={key} />
 										) : null}
-										{key === 'itemName' ? (
-											<h3 key={crypto.randomUUID()}>{value}</h3>
-										) : null}
-										{key === 'itemAmount' ? (
-											<p key={crypto.randomUUID()}>Quantity: {value}</p>
-										) : null}
-										{key === 'itemPrice' ? (
-											<p key={crypto.randomUUID()}>Price: ${value}</p>
-										) : null}
-										{key === 'itemTotal' ? (
-											<p key={crypto.randomUUID()}>Item total: ${value}</p>
-										) : null}
+										{key === 'itemName' ? <h3 key={key}>{value}</h3> : null}
+										{key === 'itemAmount' ? <p key={key}>Quantity: {value}</p> : null}
+										{key === 'itemPrice' ? <p key={key}>Price: ${value}</p> : null}
+										{key === 'itemTotal' ? <p key={key}>Item total: ${value}</p> : null}
 										{key === 'itemId' ? (
-											<div className="button-and-break" key={crypto.randomUUID()}>
+											<div className="button-and-break" key={key}>
 												<ButtonS
 													type="button"
 													value={value}
 													name="women"
 													onClick={handleRemoveCartItemBttnClick}
 													themeState={themeState}
-													key={crypto.randomUUID()}
+													key={`${key}_${JSON.stringify(value)}`}
 												>
 													Remove item
 												</ButtonS>
-												<div className="line-break" key={crypto.randomUUID()}></div>
+												<div
+													className="line-break"
+													key={`${key_}_${key}_${JSON.stringify(value)}`}
+												></div>
 											</div>
 										) : null}
 									</div>
@@ -201,46 +177,32 @@ function Cashier({
 						})}
 				</div>
 
-				<div className="cart-summary" key={crypto.randomUUID()}>
+				<div className="cart-summary">
 					{state.men.size > 0 &&
 						Object.entries(Object.fromEntries(state.men)).map(([key_, value_]) => {
 							return Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 								return (
-									<div className="cart-item" key={crypto.randomUUID()}>
+									<div className="cart-item" key={JSON.stringify(value)}>
 										{key === 'src' ? (
-											<img
-												src={value}
-												alt=""
-												width={150}
-												height={225}
-												key={crypto.randomUUID()}
-											/>
+											<img src={value} alt="" width={150} height={225} key={key} />
 										) : null}
-										{key === 'itemName' ? (
-											<h3 key={crypto.randomUUID()}>{value}</h3>
-										) : null}
-										{key === 'itemAmount' ? (
-											<p key={crypto.randomUUID()}>Quantity: {value}</p>
-										) : null}
-										{key === 'itemPrice' ? (
-											<p key={crypto.randomUUID()}>Price: ${value}</p>
-										) : null}
-										{key === 'itemTotal' ? (
-											<p key={crypto.randomUUID()}>Item total: ${value}</p>
-										) : null}
+										{key === 'itemName' ? <h3 key={key}>{value}</h3> : null}
+										{key === 'itemAmount' ? <p key={key}>Quantity: {value}</p> : null}
+										{key === 'itemPrice' ? <p key={key}>Price: ${value}</p> : null}
+										{key === 'itemTotal' ? <p key={key}>Item total: ${value}</p> : null}
 										{key === 'itemId' ? (
-											<div className="button-and-break" key={crypto.randomUUID()}>
+											<div className="button-and-break" key={`${key_}_${key}`}>
 												<ButtonS
 													type="button"
 													value={value}
 													name="men"
 													onClick={handleRemoveCartItemBttnClick}
 													themeState={themeState}
-													key={crypto.randomUUID()}
+													key={`${key}_${value}`}
 												>
 													Remove item
 												</ButtonS>
-												<div className="line-break" key={crypto.randomUUID()}></div>
+												<div className="line-break" key={`${key_}_${key}_${value}`}></div>
 											</div>
 										) : null}
 									</div>

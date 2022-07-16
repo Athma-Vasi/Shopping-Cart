@@ -318,15 +318,21 @@ function ProductDetails({
 		<React.Fragment>
 			<ContainerS themeState={themeState}>
 				<div className="product-image">
-					<img src={src} alt={itemDescription} width={320} height={480}></img>
-					<figcaption>
+					<img
+						src={src}
+						alt={itemDescription}
+						width={320}
+						height={480}
+						data-cy="productDetails-img"
+					></img>
+					<figcaption data-cy="productDetails-caption">
 						Photo by {author} at {site}
 					</figcaption>
 				</div>
 				<div className="product-details">
-					<h3>{itemName}</h3>
-					<p>{itemDescription}</p>
-					<h3>${itemPrice}</h3>
+					<h3 data-cy="productDetails-name">{itemName}</h3>
+					<p data-cy="productDetails-description">{itemDescription}</p>
+					<h3 data-cy="productDetails-price">${itemPrice}</h3>
 
 					<p>{`${randNum(13)} people bought this item last minute!`}</p>
 
@@ -337,7 +343,12 @@ function ProductDetails({
 						onSubmit={handleAddToCartBttnClick}
 					>
 						<label htmlFor="select-items"></label>
-						<SelectS name="addCart" id="select-items" themeState={themeState}>
+						<SelectS
+							name="addCart"
+							id="select-items"
+							themeState={themeState}
+							data-cy="productDetails-select"
+						>
 							<option value="">--Please choose an amount--</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -345,16 +356,25 @@ function ProductDetails({
 							<option value="4">4</option>
 							<option value="5">5</option>
 						</SelectS>
-						<ButtonS type="submit" name="addCart" themeState={themeState}>
+						<ButtonS
+							type="submit"
+							name="addCart"
+							themeState={themeState}
+							data-cy="productDetails-bttn-addCart"
+						>
 							Add to Cart
 						</ButtonS>
 					</form>
 
 					{isItemInCart && (
 						<div className="itemsInCart">
-							<h3>Item has been added to cart!</h3>
+							<h3 data-cy="productDetails-cashier-mssg">Item has been added to cart!</h3>
 							<Link to="cashier">
-								<ButtonS type="button" themeState={themeState}>
+								<ButtonS
+									type="button"
+									themeState={themeState}
+									data-cy="productDetails-cashier-bttn"
+								>
 									Complete order and checkout
 								</ButtonS>
 							</Link>
