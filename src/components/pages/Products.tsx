@@ -39,6 +39,7 @@ function Products({
 										}
 									}}
 									to="all"
+									data-cy="all-products-link"
 								>
 									All
 								</NavLink>
@@ -59,6 +60,7 @@ function Products({
 										}
 									}}
 									to="accessories"
+									data-cy="accessories-link"
 								>
 									Accessories
 								</NavLink>
@@ -79,6 +81,7 @@ function Products({
 										}
 									}}
 									to="mens"
+									data-cy="mens-link"
 								>
 									Men's fashion
 								</NavLink>
@@ -99,6 +102,7 @@ function Products({
 										}
 									}}
 									to="womens"
+									data-cy="womens-link"
 								>
 									Women's fashion
 								</NavLink>

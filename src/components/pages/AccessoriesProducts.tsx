@@ -20,29 +20,25 @@ function AccessoriesProducts({
 }): JSX.Element {
 	return (
 		<React.Fragment>
-			<h3 className="products-title">Accessories</h3>
-			<ContainerS themeState={themeState} key={crypto.randomUUID()}>
+			<h3 className="products-title" data-cy="title-accessories-product">
+				Accessories
+			</h3>
+			<ContainerS themeState={themeState}>
 				{Object.entries(Object.fromEntries(accessoriesData)).map(([key_, value_]) => {
 					return (
-						<Link to={`accessories-${key_}`} key={crypto.randomUUID()}>
-							<CardS themeState={themeState} key={crypto.randomUUID()}>
+						<Link to={`accessories-${key_}`} key={key_}>
+							<CardS themeState={themeState}>
 								{Object.entries(Object.fromEntries(value_)).map(([key, value]) => {
 									return key === 'src' ? (
-										<img
-											key={crypto.randomUUID()}
-											src={value}
-											alt=""
-											width={150}
-											height={225}
-										></img>
+										<img key={key} src={value} alt="" width={150} height={225}></img>
 									) : key === 'category' ? null : key === 'author' ? null : key ===
 									  'site' ? null : key === 'itemDescription' ? null : key ===
 									  'itemPrice' ? (
-										<h4 className="product-text" key={crypto.randomUUID()}>
+										<h4 className="product-text" key={key}>
 											${value}
 										</h4>
 									) : (
-										<h4 className="product-text" key={crypto.randomUUID()}>
+										<h4 className="product-text" key={key}>
 											{value}
 										</h4>
 									)

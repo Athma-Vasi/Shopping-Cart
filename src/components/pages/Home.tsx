@@ -23,8 +23,10 @@ function Home({
 						height={720}
 					/>
 					<figcaption>Photo by SHVETS production at pexels.com</figcaption>
-					<h4>Comfy. Chic. Loungewear.</h4>
-					<Link to="/products/womens">Shop Collection</Link>
+					<h4 data-cy="home-women-text">Comfy. Chic. Loungewear.</h4>
+					<Link to="/products/womens" data-cy="home-women-link">
+						Shop Collection
+					</Link>
 				</div>
 
 				<div className="homepage-photo">
@@ -35,8 +37,10 @@ function Home({
 						height={720}
 					/>
 					<figcaption>Photo by Julia Volk at pexels.com</figcaption>
-					<h4>Creative. Technology. Professional.</h4>
-					<Link to="/products/accessories">Shop Collection</Link>
+					<h4 data-cy="home-accessories-text">Creative. Technology. Professional.</h4>
+					<Link to="/products/accessories" data-cy="home-accessories-link">
+						Shop Collection
+					</Link>
 				</div>
 
 				<div className="homepage-photo">
@@ -47,8 +51,10 @@ function Home({
 						height={720}
 					/>
 					<figcaption>Photo by Spencer Selover at pexels.com</figcaption>
-					<h4>Crypto. Blockchain. Web 3.0</h4>
-					<Link to="/products/mens">Shop Collection</Link>
+					<h4 data-cy="home-men-text">Crypto. Blockchain. Web 3.0</h4>
+					<Link to="/products/mens" data-cy="home-men-link">
+						Shop Collection
+					</Link>
 				</div>
 			</ContainerS>
 

@@ -4,6 +4,7 @@ import React from 'react'
 import { State, Action, ThemeState } from '../helpers/types'
 import { appReducer } from '../helpers/functions/appReducer'
 import { themeReducer } from '../helpers/functions/themeReducer'
+import { initialThemeState, themeAction } from '../style/Theme'
 
 import { WrapperS } from '../styled-generics/WrapperS'
 import { ContainerS } from '../styled-generics/ContainerS'
@@ -18,7 +19,6 @@ import { AllProducts } from './AllProducts'
 import { AccessoriesProducts } from './AccessoriesProducts'
 import { MensProducts } from './MensProducts'
 import { WomensProducts } from './WomensProducts'
-import { initialThemeState, themeAction } from '../style/Theme'
 
 const initialState: State = {
 	women: new Map(),
@@ -73,6 +73,7 @@ function Views(): JSX.Element {
 									? themeState.colours.default?.primary
 									: themeState.colours.dark?.primary,
 							}}
+							data-cy="nav-title"
 						>
 							THE FASHION EMPORIUM
 						</h1>
@@ -101,6 +102,7 @@ function Views(): JSX.Element {
 									}
 								}}
 								to="home"
+								data-cy="nav-home"
 							>
 								Home
 							</NavLink>
@@ -128,6 +130,7 @@ function Views(): JSX.Element {
 									}
 								}}
 								to="about"
+								data-cy="nav-about"
 							>
 								About
 							</NavLink>
@@ -155,6 +158,7 @@ function Views(): JSX.Element {
 									}
 								}}
 								to="products"
+								data-cy="nav-products"
 							>
 								Products
 							</NavLink>
@@ -182,6 +186,7 @@ function Views(): JSX.Element {
 									}
 								}}
 								to="cashier"
+								data-cy="nav-cashier"
 							>
 								<svg style={{ width: '24px', height: '24px' }} viewBox="0 0 24 24">
 									<path
@@ -192,7 +197,11 @@ function Views(): JSX.Element {
 							</NavLink>
 						</li>
 
-						<li className="themeIcon" onClick={handleToggleThemeClick}>
+						<li
+							className="themeIcon"
+							onClick={handleToggleThemeClick}
+							data-cy="nav-theme-toggle"
+						>
 							☀️
 						</li>
 					</ul>
