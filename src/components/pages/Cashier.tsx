@@ -147,12 +147,35 @@ function Cashier({
 								return (
 									<div className="cart-item" key={JSON.stringify(value)}>
 										{key === 'src' ? (
-											<img src={value} alt="" width={150} height={225} key={key} />
+											<img
+												src={value}
+												alt=""
+												width={150}
+												height={225}
+												key={key}
+												data-cy="cashier-womenProduct-img"
+											/>
 										) : null}
-										{key === 'itemName' ? <h3 key={key}>{value}</h3> : null}
-										{key === 'itemAmount' ? <p key={key}>Quantity: {value}</p> : null}
-										{key === 'itemPrice' ? <p key={key}>Price: ${value}</p> : null}
-										{key === 'itemTotal' ? <p key={key}>Item total: ${value}</p> : null}
+										{key === 'itemName' ? (
+											<h3 key={key} data-cy="cashier-womenProduct-name">
+												{value}
+											</h3>
+										) : null}
+										{key === 'itemAmount' ? (
+											<p key={key} data-cy="cashier-womenProduct-amount">
+												Quantity: {value}
+											</p>
+										) : null}
+										{key === 'itemPrice' ? (
+											<p key={key} data-cy="cashier-womenProduct-price">
+												Price: ${value}
+											</p>
+										) : null}
+										{key === 'itemTotal' ? (
+											<p key={key} data-cy="cashier-womenProduct-total">
+												Item total: ${value}
+											</p>
+										) : null}
 										{key === 'itemId' ? (
 											<div className="button-and-break" key={key}>
 												<ButtonS
@@ -162,6 +185,7 @@ function Cashier({
 													onClick={handleRemoveCartItemBttnClick}
 													themeState={themeState}
 													key={`${key}_${JSON.stringify(value)}`}
+													data-cy="cashier-womenProduct-bttn-removeItem"
 												>
 													Remove item
 												</ButtonS>
@@ -212,9 +236,9 @@ function Cashier({
 				</div>
 
 				<div className="order-summary">
-					<h3>Order Summary</h3>
+					<h3 data-cy="cashier-orderSummary">Order Summary</h3>
 					<p>( includes G.S.T. )</p>
-					<p>
+					<p data-cy="cashier-totalPrice">
 						Total price: $
 						{state.men.size === 0 &&
 						state.women.size === 0 &&
@@ -231,6 +255,7 @@ function Cashier({
 								type="button"
 								themeState={themeState}
 								onClick={handleCompleteOrderBttnClick}
+								data-cy="cashier-bttn-completeOrder"
 							>
 								Complete order
 							</ButtonS>

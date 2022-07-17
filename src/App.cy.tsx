@@ -616,4 +616,59 @@ describe('1. <App>', () => {
 			'Complete order and checkout'
 		)
 	})
+
+	//All Products - Womens - Product Details - Cashier
+
+	it('displays womens product card with item added to cart in the Cashier page', () => {
+		mount(<App />)
+		cy.get('[data-cy="nav-products"]').click()
+		cy.get('[data-cy="womens-link"]').click()
+		cy.get('[data-cy="womensProducts-womenCard-img"]').last().click()
+		cy.get('[data-cy="productDetails-select"]').select('2')
+		cy.get('[data-cy="productDetails-bttn-addCart"]').click()
+		cy.get('[data-cy="productDetails-cashier-bttn"]').click()
+		cy.get('[data-cy="cashier-womenProduct-img"]').should('have.attr', 'src')
+		cy.get('[data-cy="cashier-womenProduct-name"]').should('contain', 'Sweater')
+		cy.get('[data-cy="cashier-womenProduct-amount"]').should('contain', '2')
+		cy.get('[data-cy="cashier-womenProduct-price"]').should('contain', '$89.99')
+		cy.get('[data-cy="cashier-womenProduct-total"]').should('contain', '$179.98')
+		cy.get('[data-cy="cashier-womenProduct-bttn-removeItem"]').should(
+			'contain',
+			'Remove item'
+		)
+	})
+
+	it('displays order summary section in Cashier when a womens product card is clicked then item amount is selected then `Add to Cart` button is clicked then `Complete order and checkout` button is clicked', () => {
+		mount(<App />)
+		cy.get('[data-cy="nav-products"]').click()
+		cy.get('[data-cy="womens-link"]').click()
+		cy.get('[data-cy="womensProducts-womenCard-img"]').last().click()
+		cy.get('[data-cy="productDetails-select"]').select('2')
+		cy.get('[data-cy="productDetails-bttn-addCart"]').click()
+		cy.get('[data-cy="productDetails-cashier-bttn"]').click()
+		cy.get('[data-cy="cashier-orderSummary"]').should('contain', 'Order Summary')
+	})
+
+	it('displays total price in Cashier order summary page when a womens product card is clicked then item amount is selected then `Add to Cart` button is clicked then `Complete order and checkout` button is clicked', () => {
+		mount(<App />)
+		cy.get('[data-cy="nav-products"]').click()
+		cy.get('[data-cy="womens-link"]').click()
+		cy.get('[data-cy="womensProducts-womenCard-img"]').last().click()
+		cy.get('[data-cy="productDetails-select"]').select('2')
+		cy.get('[data-cy="productDetails-bttn-addCart"]').click()
+		cy.get('[data-cy="productDetails-cashier-bttn"]').click()
+		cy.get('[data-cy="cashier-totalPrice"]').should('contain', '$188.98')
+	})
+
+	it('displays order summary page when a womens product card is clicked then item amount is selected then `Add to Cart` button is clicked then `Complete order and checkout` button is clicked', () => {
+		mount(<App />)
+		cy.get('[data-cy="nav-products"]').click()
+		cy.get('[data-cy="womens-link"]').click()
+		cy.get('[data-cy="womensProducts-womenCard-img"]').last().click()
+		cy.get('[data-cy="productDetails-select"]').select('2')
+		cy.get('[data-cy="productDetails-bttn-addCart"]').click()
+		cy.get('[data-cy="productDetails-cashier-bttn"]').click()
+		cy.get('[data-cy="cashier-bttn-completeOrder"]').should('contain', 'Complete order')
+	})
+	//TODO - accessories, mens in cashier
 })
