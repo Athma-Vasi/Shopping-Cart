@@ -1,6 +1,8 @@
 import { mount } from 'cypress/react'
 import App from './App'
 
+//checks every possible user interaction from home page to checkout page
+
 describe('<App>', () => {
 	it('mounts', () => {
 		mount(<App />)
