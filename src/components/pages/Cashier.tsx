@@ -109,12 +109,35 @@ function Cashier({
 									return (
 										<div className="cart-item" key={JSON.stringify(value)}>
 											{key === 'src' ? (
-												<img src={value} alt="" width={150} height={225} key={key} />
+												<img
+													src={value}
+													alt=""
+													width={150}
+													height={225}
+													key={key}
+													data-cy="cashier-accessoriesProduct-img"
+												/>
 											) : null}
-											{key === 'itemName' ? <h3 key={key}>{value}</h3> : null}
-											{key === 'itemAmount' ? <p key={key}>Quantity: {value}</p> : null}
-											{key === 'itemPrice' ? <p key={key}>Price: ${value}</p> : null}
-											{key === 'itemTotal' ? <p key={key}>Item total: ${value}</p> : null}
+											{key === 'itemName' ? (
+												<h3 key={key} data-cy="cashier-accessoriesProduct-name">
+													{value}
+												</h3>
+											) : null}
+											{key === 'itemAmount' ? (
+												<p key={key} data-cy="cashier-accessoriesProduct-amount">
+													Quantity: {value}
+												</p>
+											) : null}
+											{key === 'itemPrice' ? (
+												<p key={key} data-cy="cashier-accessoriesProduct-price">
+													Price: ${value}
+												</p>
+											) : null}
+											{key === 'itemTotal' ? (
+												<p key={key} data-cy="cashier-accessoriesProduct-total">
+													Item total: ${value}
+												</p>
+											) : null}
 											{key === 'itemId' ? (
 												<div className="button-and-break" key={key}>
 													<ButtonS
@@ -124,6 +147,7 @@ function Cashier({
 														onClick={handleRemoveCartItemBttnClick}
 														themeState={themeState}
 														key={`${key}_${value}`}
+														data-cy="cashier-accessoriesProduct-bttn-removeItem"
 													>
 														Remove item
 													</ButtonS>
@@ -208,12 +232,35 @@ function Cashier({
 								return (
 									<div className="cart-item" key={JSON.stringify(value)}>
 										{key === 'src' ? (
-											<img src={value} alt="" width={150} height={225} key={key} />
+											<img
+												src={value}
+												alt=""
+												width={150}
+												height={225}
+												key={key}
+												data-cy="cashier-menProduct-img"
+											/>
 										) : null}
-										{key === 'itemName' ? <h3 key={key}>{value}</h3> : null}
-										{key === 'itemAmount' ? <p key={key}>Quantity: {value}</p> : null}
-										{key === 'itemPrice' ? <p key={key}>Price: ${value}</p> : null}
-										{key === 'itemTotal' ? <p key={key}>Item total: ${value}</p> : null}
+										{key === 'itemName' ? (
+											<h3 key={key} data-cy="cashier-menProduct-name">
+												{value}
+											</h3>
+										) : null}
+										{key === 'itemAmount' ? (
+											<p key={key} data-cy="cashier-menProduct-amount">
+												Quantity: {value}
+											</p>
+										) : null}
+										{key === 'itemPrice' ? (
+											<p key={key} data-cy="cashier-menProduct-price">
+												Price: ${value}
+											</p>
+										) : null}
+										{key === 'itemTotal' ? (
+											<p key={key} data-cy="cashier-menProduct-total">
+												Item total: ${value}
+											</p>
+										) : null}
 										{key === 'itemId' ? (
 											<div className="button-and-break" key={`${key_}_${key}`}>
 												<ButtonS
@@ -223,6 +270,7 @@ function Cashier({
 													onClick={handleRemoveCartItemBttnClick}
 													themeState={themeState}
 													key={`${key}_${value}`}
+													data-cy="cashier-menProduct-bttn-removeItem"
 												>
 													Remove item
 												</ButtonS>

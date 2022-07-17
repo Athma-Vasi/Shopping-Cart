@@ -22,15 +22,21 @@ function Checkout({
 
 	return (
 		<React.Fragment>
-			<h2 className="products-title">Checkout</h2>
+			<h2 className="products-title" data-cy="checkout-title">
+				Checkout
+			</h2>
 			<ContainerS themeState={themeState}>
-				<div className="checkout">
+				<div className="checkout" data-cy="checkout-confirmation">
 					<h3>Your order has been placed!</h3>
 					<h4>Expect a notification in your email within the hour.</h4>
 					<h4>Predicted delivery time: {randNum(48)} hrs</h4>
 					<h4>Thank you for shopping with us!</h4>
 					<Link to="/products/all">
-						<ButtonS themeState={themeState} type="button">
+						<ButtonS
+							themeState={themeState}
+							type="button"
+							data-cy="checkout-bttn-backToStore"
+						>
 							Back to store
 						</ButtonS>
 					</Link>
