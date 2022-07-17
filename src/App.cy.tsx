@@ -1,7 +1,7 @@
 import { mount } from 'cypress/react'
 import App from './App'
 
-describe('1. <App>', () => {
+describe('<App>', () => {
 	it('mounts', () => {
 		mount(<App />)
 	})
